@@ -1,7 +1,7 @@
 # update_check
 update notifier for Dietpi 
 
-nano /etc/systemd/system/update_check.service
+_nano /etc/systemd/system/update_check.service_
 
 [Unit]
 Description=check update aviable
@@ -15,7 +15,8 @@ ExecStart=/usr/bin/python3 /root/update_check/update_check.py
 [Install]
 WantedBy=multi-user.target
 
-systemctl daemon-reload
+_systemctl daemon-reload
 
 systemctl enable update_check.service
 systemctl start update_check.service
+_
