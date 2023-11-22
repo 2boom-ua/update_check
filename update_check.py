@@ -15,7 +15,19 @@ def get_str_from_file(filename):
 			ret = data_file.read().strip("\n")
 		data_file.close()
 		return ret
-
+		
+def get_current_version():
+	filename = "/boot/dietpi/.version"
+	ver = ""
+	if os.path.exists(filename):
+		for line in open(filename, "r"):
+			if line.startswith("G_DIETPI_VERSION_CORE") or line.startswith("G_DIETPI_VERSION_SUB") or line.startswith("G_DIETPI_VERSION_RC"):
+				ver += "%s." % line.split('=')[1].rstrip('\n')
+		ver = ver.rstrip(".")
+		return ver
+	else:
+		return "unknow"
+	
 def hbold(item):
 	return telebot.formatting.hbold(item)
 
@@ -63,7 +75,7 @@ def update_check():
 		update_message = f"{GREEN_DOT} - no apt update(s) available"
 		li[0] = "0"
 	if os.path.exists("/run/dietpi/.update_available"):
-		upgrade_message = f"{ORANGE_DOT} - {get_str_from_file('/run/dietpi/.update_available')} upgrade available available"
+		upgrade_message = f"{ORANGE_DOT} - {get_current_version()}->{get_str_from_file('/run/dietpi/.update_available')} upgrade available"
 		li[1] = "1"
 	else:
 		upgrade_message = f"{GREEN_DOT} - no upgrade available"
