@@ -1,5 +1,14 @@
 # update_check
 update notifier for Dietpi 
+**config.yml**
+```
+telegram:
+   TOKEN: "your token"
+   CHAT_ID: "your chat id"
+timeout:
+   MIN_REPEAT: 1
+```
+**make as service**
 ```
 nano /etc/systemd/system/update_check.service
 ```
