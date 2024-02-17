@@ -9,25 +9,20 @@ import time
 from schedule import every, repeat, run_pending
 
 def get_str_from_file(filename : str):
+	ret = ""
 	if os.path.exists(filename):
-		with open(filename, "r") as file:
-			ret = file.read().strip("\n")
-		file.close()
-		return ret
-	return ""
-	
-def bold_html_txt(message : str):
-	return f"<b>{message}</b>"
-	
+		ret = open(filename, 'r').read().strip('\n')
+	return ret
+
 def telegram_message(message : str):
 	try:
-		tb.send_message(CHAT_ID, message, parse_mode='html')
+		tb.send_message(CHAT_ID, message, parse_mode='markdown')
 	except Exception as e:
 		print(f"error: {e}")
 
 if __name__ == "__main__":
 	FileNameMessage = [['/run/dietpi/.apt_updates', 'apt update(s) available'], ['/run/dietpi/.update_available', 'upgrade available'], ['/run/dietpi/.live_patches', 'live patch(es) available']]
-	HOSTNAME = bold_html_txt(get_str_from_file("/proc/sys/kernel/hostname"))
+	HOSTNAME = open('/proc/sys/kernel/hostname', 'r').read().strip('\n')
 	CURRENT_PATH = "/root/update_check"
 	TMP_FILE = "/tmp/status_update.tmp"
 	ORANGE_DOT, GREEN_DOT = "\U0001F7E0", "\U0001F7E2"
@@ -39,22 +34,22 @@ if __name__ == "__main__":
 			MIN_REPEAT = parsed_yaml["timeout"]["MIN_REPEAT"]
 		file.close()
 		tb = telebot.TeleBot(TOKEN)
-		telegram_message(f"{HOSTNAME} (updates)\nupgrade, updates, patches monitor started: check period {MIN_REPEAT} minute(s)")
+		telegram_message(f"*{HOSTNAME}* (updates)\nupgrade, updates, patches monitor started: check period {MIN_REPEAT} minute(s)")
 	else:
 		print("config.yml not found")
 	
 @repeat(every(MIN_REPEAT).minutes)
 def update_check():
 	new_status = message = old_status = ""
-	for i in range(len(FileNameMessage)):
-		old_status += "0"
+	old_status += "0" * len(FileNameMessage)
 	li = list(old_status)
 	if not os.path.exists(TMP_FILE) or os.path.getsize(TMP_FILE) != 3:
 		with open(TMP_FILE, "w") as file:
 			file.write(old_status)
 		file.close()
-	with open(TMP_FILE, "r") as file:
-		old_status = file.read()
+	else:
+		with open(TMP_FILE, "r") as file:
+			old_status = file.read()
 		file.close()
 	for i in range(len(old_status)):
 		if os.path.exists(FileNameMessage[i][0]):
@@ -68,7 +63,7 @@ def update_check():
 		with open(TMP_FILE, "w") as file:
 			file.write(new_status)
 		file.close()
-		telegram_message(f"{HOSTNAME} (updates)\n{message}")
+		telegram_message(f"*{HOSTNAME}* (updates)\n{message}")
 
 while True:
     run_pending()
