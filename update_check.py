@@ -40,30 +40,30 @@ if __name__ == "__main__":
 	
 @repeat(every(MIN_REPEAT).minutes)
 def update_check():
-	new_status = message = old_status = ""
-	old_status += "0" * len(FileNameMessage)
-	li = list(old_status)
-	if not os.path.exists(TMP_FILE) or os.path.getsize(TMP_FILE) != 3:
+	NEW_STATUS = MESSAGE = OLD_STATUS = ""
+	OLD_STATUS += "0" * len(FileNameMessage)
+	li = list(OLD_STATUS )
+	if not os.path.exists(TMP_FILE) or os.path.getsize(TMP_FILE) != len(FileNameMessage):
 		with open(TMP_FILE, "w") as file:
-			file.write(old_status)
+			file.write(OLD_STATUS)
 		file.close()
 	else:
 		with open(TMP_FILE, "r") as file:
-			old_status = file.read()
+			OLD_STATUS = file.read()
 		file.close()
-	for i in range(len(old_status)):
+	for i in range(len(OLD_STATUS)):
 		if os.path.exists(FileNameMessage[i][0]):
-			message += f"{ORANGE_DOT} - {get_str_from_file(FileNameMessage[i][0])} {FileNameMessage[i][1]}\n"
+			MESSAGE += f"{ORANGE_DOT} - {get_str_from_file(FileNameMessage[i][0])} {FileNameMessage[i][1]}\n"
 			li[i] = "1"
 		else:
-			message += f"{GREEN_DOT} - no {FileNameMessage[i][1]}\n"
+			MESSAGE += f"{GREEN_DOT} - no {FileNameMessage[i][1]}\n"
 			li[i] = "0"
-	new_status = "".join(li)
-	if old_status != new_status:
+	NEW_STATUS = "".join(li)
+	if OLD_STATUS != NEW_STATUS:
 		with open(TMP_FILE, "w") as file:
-			file.write(new_status)
+			file.write(NEW_STATUS)
 		file.close()
-		telegram_message(f"*{HOSTNAME}* (updates)\n{message}")
+		telegram_message(f"*{HOSTNAME}* (updates)\n{MESSAGE}")
 
 while True:
     run_pending()
