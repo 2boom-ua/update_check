@@ -47,10 +47,9 @@ def update_check():
 		with open(TMP_FILE, "w") as file:
 			file.write(OLD_STATUS)
 		file.close()
-	else:
-		with open(TMP_FILE, "r") as file:
-			OLD_STATUS = file.read()
-		file.close()
+	with open(TMP_FILE, "r") as file:
+		OLD_STATUS = file.read()
+	file.close()
 	for i in range(len(OLD_STATUS)):
 		if os.path.exists(FileNameMessage[i][0]):
 			MESSAGE += f"{ORANGE_DOT} - {get_str_from_file(FileNameMessage[i][0])} {FileNameMessage[i][1]}\n"
