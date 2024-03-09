@@ -34,7 +34,7 @@ if __name__ == "__main__":
 			MIN_REPEAT = parsed_yaml["timeout"]["MIN_REPEAT"]
 		file.close()
 		tb = telebot.TeleBot(TOKEN)
-		telegram_message(f"*{HOSTNAME}* (updates)\nupgrade, updates, patches monitor started: check period {MIN_REPEAT} minute(s)")
+		telegram_message(f"*{HOSTNAME}* (updates)\nupgrade, updates, patches monitor started:\n- polling period {MIN_REPEAT} minute(s)")
 	else:
 		print("config.yml not found")
 	
