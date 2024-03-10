@@ -23,7 +23,7 @@ def telegram_message(message : str):
 if __name__ == "__main__":
 	FileNameMessage = [['/run/dietpi/.apt_updates', 'apt update(s) available'], ['/run/dietpi/.update_available', 'upgrade available'], ['/run/dietpi/.live_patches', 'live patch(es) available']]
 	HOSTNAME = open('/proc/sys/kernel/hostname', 'r').read().strip('\n')
-	CURRENT_PATH = "/root/update_check"
+	CURRENT_PATH =  os.path.dirname(os.path.realpath(__file__))
 	TMP_FILE = "/tmp/status_update.tmp"
 	ORANGE_DOT, GREEN_DOT = "\U0001F7E0", "\U0001F7E2"
 	if os.path.exists(f"{CURRENT_PATH}/config.yml"):
