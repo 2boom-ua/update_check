@@ -20,7 +20,7 @@ After=multi-user.target
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/bin/python3 /root/update_check/update_check.py
+ExecStart=/usr/bin/python3 /opt/update_check/update_check.py
 [Install]
 WantedBy=multi-user.target
 ```
