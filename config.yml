@@ -1,6 +1,0 @@
-telegram:
-   TOKEN: "your token"
-   CHAT_ID: "your chat id"
-timeout:
-   MIN_REPEAT: 1
-   
