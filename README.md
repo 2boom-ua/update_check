@@ -1,5 +1,5 @@
 # update_check
-update notifier for Dietpi 
+update notifier for Dietpi (Telegram)
 
 **config.yml**
 ```
