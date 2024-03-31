@@ -2,7 +2,8 @@
 update notifier for Dietpi (Telegram, Discord)
 
 **config.json**
-```{
+```
+{
 	"TELEGRAM": {
 		"ON": true,
 		"TOKEN": "6516846080:AAExanW-S6amGEummCMH-h1Vo6FlbzUUy7M",
