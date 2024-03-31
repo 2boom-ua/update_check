@@ -2,17 +2,18 @@
 update notifier for Dietpi (Telegram, Discord)
 
 **config.json**
-```
-"TELEGRAM": {
+```{
+	"TELEGRAM": {
 		"ON": true,
-		"TOKEN": "your_token",
-		"CHAT_ID": "your_chat_id"
+		"TOKEN": "6516846080:AAExanW-S6amGEummCMH-h1Vo6FlbzUUy7M",
+		"CHAT_ID": "677895454"
 	},
 	"DISCORD": {
 		"ON": true,
-		"WEB": "web_your_channel"
+		"WEB": "https://discord.com/api/webhooks/1223926610374426725/tRlqITXcBhRaRbvdPKLQWCIgfkllNZE4WninyLnEuoqeLMrC4iPrQ2jBASfJKBNyW67Q"
 	},
 	"MIN_REPEAT": 1
+}
 ```
 **make as service**
 ```
