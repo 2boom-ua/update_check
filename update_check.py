@@ -51,7 +51,7 @@ if __name__ == "__main__":
 		- messenging Telegram: {str(TELEGRAM_ON).lower()},\n\
 		- messenging Discord: {str(DISCORD_ON).lower()}.")
 	else:
-		print("config.yml not found")
+		print("config.json not found")
 	
 @repeat(every(MIN_REPEAT).minutes)
 def update_check():
