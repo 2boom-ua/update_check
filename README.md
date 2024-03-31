@@ -1,13 +1,18 @@
 # update_check
-update notifier for Dietpi (Telegram)
+update notifier for Dietpi (Telegram, Discord)
 
-**config.yml**
+**config.json**
 ```
-telegram:
-   TOKEN: "your token"
-   CHAT_ID: "your chat id"
-timeout:
-   MIN_REPEAT: 1
+"TELEGRAM": {
+		"ON": true,
+		"TOKEN": "your_token",
+		"CHAT_ID": "your_chat_id"
+	},
+	"DISCORD": {
+		"ON": true,
+		"WEB": "web_your_channel"
+	},
+	"MIN_REPEAT": 1
 ```
 **make as service**
 ```
