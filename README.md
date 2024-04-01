@@ -6,12 +6,12 @@ update notifier for Dietpi (Telegram, Discord)
 {
 	"TELEGRAM": {
 		"ON": true,
-		"TOKEN": "6516846080:AAExanW-S6amGEummCMH-h1Vo6FlbzUUy7M",
-		"CHAT_ID": "677895454"
+		"TOKEN": "your_token",
+		"CHAT_ID": "your_chat_id"
 	},
 	"DISCORD": {
 		"ON": true,
-		"WEB": "https://discord.com/api/webhooks/1223926610374426725/tRlqITXcBhRaRbvdPKLQWCIgfkllNZE4WninyLnEuoqeLMrC4iPrQ2jBASfJKBNyW67Q"
+		"WEB": "web_your_channel"
 	},
 	"MIN_REPEAT": 1
 }
