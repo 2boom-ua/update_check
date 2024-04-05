@@ -6,10 +6,9 @@ import json
 import os
 import telebot
 import time
-import requests
+from gotify import Gotify
 import discord_notify as dn
 from schedule import every, repeat, run_pending
-from urllib.error import URLError, HTTPError
 
 def get_str_from_file(filename : str):
 	ret = ""
@@ -30,10 +29,11 @@ def send_message(message : str):
 			print(f"error: {e}")
 	if GOTIFY_ON:
 		message = message.replace("*", "").replace("\t", "")
+		gotify = Gotify(base_url=GOTIFY_WEB, app_token=GOTIFY_TOKEN)
 		try:
-			response = requests.post(f'{GOTIFY_WEB}?token={GOTIFY_TOKEN}', json={"message": message})
-		except HTTPError as e:
-			print(f"reason: {e.reason}")
+			gotify.create_message(message)
+		except Exception as e:
+			print(f"error: {e}")
 
 if __name__ == "__main__":
 	FileNameMessage = [['/run/dietpi/.apt_updates', 'apt update(s) available'], ['/run/dietpi/.update_available', 'upgrade available'],\
