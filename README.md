@@ -1,5 +1,5 @@
 # update_check
-update notifier for Dietpi (Telegram, Discord, Gotify)
+update informer for Dietpi (Telegram, Discord, Gotify) as linux service
 
 *** [Gotify - a simple server for sending and receiving messages (in real time per WebSocket). ](https://github.com/gotify/server)
 
