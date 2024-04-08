@@ -1,6 +1,11 @@
 # update_check
 update informer for Dietpi (Telegram, Discord, Gotify, Ntfy) as linux service
 
+**crontab**
+```
+0 */1 * * * /boot/dietpi/dietpi-update 2
+```
+
 ```
 pip install -r requirements.txt
 ```
