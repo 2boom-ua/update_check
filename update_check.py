@@ -18,6 +18,7 @@ def get_str_from_file(filename : str):
 	return ret
 
 def send_message(message : str):
+	message = message.replace("\t", "")
 	if TELEGRAM_ON:
 		try:
 			tb.send_message(CHAT_ID, message, parse_mode="markdown")
@@ -25,10 +26,10 @@ def send_message(message : str):
 			print(f"error: {e}")
 	if DISCORD_ON:
 		try:
-			notifier.send(message.replace("*", "**").replace("\t", ""), print_message=False)
+			notifier.send(message.replace("*", "**"), print_message=False)
 		except Exception as e:
 			print(f"error: {e}")
-	message = message.replace("*", "").replace("\t", "")
+	message = message.replace("*", "")
 	header = message[:message.index("\n")].rstrip("\n")
 	message = message[message.index("\n"):].strip("\n")
 	if GOTIFY_ON:
