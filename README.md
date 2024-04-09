@@ -1,5 +1,5 @@
 # update_check
-update informer for Dietpi (Telegram, Discord, Gotify, Ntfy) as linux service
+update informer for Dietpi (Telegram, Discord, Gotify, Ntfy, Pushbullet) as linux service
 
 **crontab**
 ```
@@ -31,6 +31,10 @@ pip install -r requirements.txt
 		"ON": true,
 		"SUB": "your_subscribe",
 		"WEB": "server_url"
+	},
+	"PUSHBULLET": {
+		"ON": false,
+		"API": "your_api_key"
 	},
 	"MIN_REPEAT": 1
 }
