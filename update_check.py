@@ -8,7 +8,7 @@ import time
 import requests
 from schedule import every, repeat, run_pending
 
-def get_str_from_file(filename : str):
+def getSTR(filename : str):
 	ret = ""
 	if os.path.exists(filename):
 		ret = open(filename, 'r').read().strip('\n')
@@ -112,7 +112,7 @@ def update_check():
 	for i in range(len(OLD_STATUS)):
 		if os.path.exists(FileMessage[i][0]):
 			if OLD_STATUS[i] == "0":
-				MESSAGE += f"{ORANGE_DOT} - {get_str_from_file(FileMessage[i][0])} {FileMessage[i][1]}\n"
+				MESSAGE += f"{ORANGE_DOT} - {getSTR(FileMessage[i][0])} {FileMessage[i][1]}\n"
 			CURRENT_STATUS[i] = "1"
 		else:
 			if OLD_STATUS[i] == "1":
