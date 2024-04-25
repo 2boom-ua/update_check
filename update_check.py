@@ -110,10 +110,12 @@ def update_check():
 	file.close()
 	for i in range(len(OLD_STATUS)):
 		if os.path.exists(FileNameMessage[i][0]):
-			MESSAGE += f"{ORANGE_DOT} - {get_str_from_file(FileNameMessage[i][0])} {FileNameMessage[i][1]}\n"
+			if OLD_STATUS[i] == "0":
+				MESSAGE += f"{ORANGE_DOT} - {get_str_from_file(FileNameMessage[i][0])} {FileNameMessage[i][1]}\n"
 			li[i] = "1"
 		else:
-			MESSAGE += f"{GREEN_DOT} - no {FileNameMessage[i][1]}\n"
+			if OLD_STATUS[i] == "1":
+				MESSAGE += f"{GREEN_DOT} - no {FileNameMessage[i][1]}\n"
 			li[i] = "0"
 	NEW_STATUS = "".join(li)
 	if OLD_STATUS != NEW_STATUS:
