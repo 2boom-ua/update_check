@@ -98,9 +98,10 @@ if __name__ == "__main__":
 	
 @repeat(every(MIN_REPEAT).minutes)
 def update_check():
-	NEW_STATUS = MESSAGE = OLD_STATUS = ""
+	NEW_STATUS = OLD_STATUS = MESSAGE =""
+	CURRENT_STATUS = []
 	OLD_STATUS += "0" * len(FileNameMessage)
-	li = list(OLD_STATUS )
+	CURRENT_STATUS = list(OLD_STATUS)
 	if not os.path.exists(TMP_FILE) or os.path.getsize(TMP_FILE) != len(FileNameMessage):
 		with open(TMP_FILE, "w") as file:
 			file.write(OLD_STATUS)
@@ -112,12 +113,12 @@ def update_check():
 		if os.path.exists(FileNameMessage[i][0]):
 			if OLD_STATUS[i] == "0":
 				MESSAGE += f"{ORANGE_DOT} - {get_str_from_file(FileNameMessage[i][0])} {FileNameMessage[i][1]}\n"
-			li[i] = "1"
+			CURRENT_STATUS[i] = "1"
 		else:
 			if OLD_STATUS[i] == "1":
 				MESSAGE += f"{GREEN_DOT} - no {FileNameMessage[i][1]}\n"
-			li[i] = "0"
-	NEW_STATUS = "".join(li)
+			CURRENT_STATUS[i] = "0"
+	NEW_STATUS = "".join(CURRENT_STATUS)
 	if OLD_STATUS != NEW_STATUS:
 		with open(TMP_FILE, "w") as file:
 			file.write(NEW_STATUS)
