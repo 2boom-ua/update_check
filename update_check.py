@@ -54,7 +54,7 @@ def send_message(message : str):
 			print("error:", e)
 
 if __name__ == "__main__":
-	FileNameMessage = [['/run/dietpi/.apt_updates', 'apt update(s) available'], ['/run/dietpi/.update_available', 'upgrade available'],\
+	FileMessage = [['/run/dietpi/.apt_updates', 'apt update(s) available'], ['/run/dietpi/.update_available', 'upgrade available'],\
 	['/run/dietpi/.live_patches', 'live patch(es) available']]
 	HOSTNAME = open('/proc/sys/kernel/hostname', 'r').read().strip('\n')
 	CURRENT_PATH =  os.path.dirname(os.path.realpath(__file__))
@@ -100,9 +100,9 @@ if __name__ == "__main__":
 def update_check():
 	NEW_STATUS = OLD_STATUS = MESSAGE =""
 	CURRENT_STATUS = []
-	OLD_STATUS += "0" * len(FileNameMessage)
+	OLD_STATUS += "0" * len(FileMessage)
 	CURRENT_STATUS = list(OLD_STATUS)
-	if not os.path.exists(TMP_FILE) or os.path.getsize(TMP_FILE) != len(FileNameMessage):
+	if not os.path.exists(TMP_FILE) or os.path.getsize(TMP_FILE) != len(FileMessage):
 		with open(TMP_FILE, "w") as file:
 			file.write(OLD_STATUS)
 		file.close()
@@ -110,13 +110,13 @@ def update_check():
 		OLD_STATUS = file.read()
 	file.close()
 	for i in range(len(OLD_STATUS)):
-		if os.path.exists(FileNameMessage[i][0]):
+		if os.path.exists(FileMessage[i][0]):
 			if OLD_STATUS[i] == "0":
-				MESSAGE += f"{ORANGE_DOT} - {get_str_from_file(FileNameMessage[i][0])} {FileNameMessage[i][1]}\n"
+				MESSAGE += f"{ORANGE_DOT} - {get_str_from_file(FileMessage[i][0])} {FileMessage[i][1]}\n"
 			CURRENT_STATUS[i] = "1"
 		else:
 			if OLD_STATUS[i] == "1":
-				MESSAGE += f"{GREEN_DOT} - no {FileNameMessage[i][1]}\n"
+				MESSAGE += f"{GREEN_DOT} - no {FileMessage[i][1]}\n"
 			CURRENT_STATUS[i] = "0"
 	NEW_STATUS = "".join(CURRENT_STATUS)
 	if OLD_STATUS != NEW_STATUS:
