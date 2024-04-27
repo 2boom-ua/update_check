@@ -13,6 +13,14 @@ def getSTR(filename : str):
 	if os.path.exists(filename):
 		ret = open(filename, 'r').read().strip('\n')
 	return ret
+	
+def getHostname():
+	hostname = ""
+	if os.path.exists('/proc/sys/kernel/hostname'):
+		with open('/proc/sys/kernel/hostname', "r") as file:
+			hostname = file.read().strip('\n')
+		file.close()
+	return hostname
 
 def send_message(message : str):
 	message = message.replace("\t", "")
@@ -56,7 +64,7 @@ def send_message(message : str):
 if __name__ == "__main__":
 	FileMessage = [['/run/dietpi/.apt_updates', 'apt update(s) available'], ['/run/dietpi/.update_available', 'upgrade available'],\
 	['/run/dietpi/.live_patches', 'live patch(es) available']]
-	HOSTNAME = open('/proc/sys/kernel/hostname', 'r').read().strip('\n')
+	HOSTNAME = getHostname()
 	CURRENT_PATH =  os.path.dirname(os.path.realpath(__file__))
 	TMP_FILE = "/tmp/status_update.tmp"
 	ORANGE_DOT, GREEN_DOT = "\U0001F7E0", "\U0001F7E2"
