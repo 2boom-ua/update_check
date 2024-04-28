@@ -19,7 +19,6 @@ def getHostname():
 	if os.path.exists('/proc/sys/kernel/hostname'):
 		with open('/proc/sys/kernel/hostname', "r") as file:
 			hostname = file.read().strip('\n')
-		file.close()
 	return hostname
 
 def send_message(message : str):
@@ -113,10 +112,8 @@ def update_check():
 	if not os.path.exists(TMP_FILE) or os.path.getsize(TMP_FILE) != len(FileMessage):
 		with open(TMP_FILE, "w") as file:
 			file.write(OLD_STATUS)
-		file.close()
 	with open(TMP_FILE, "r") as file:
 		OLD_STATUS = file.read()
-	file.close()
 	for i in range(len(OLD_STATUS)):
 		if os.path.exists(FileMessage[i][0]):
 			if OLD_STATUS[i] == "0":
@@ -130,7 +127,6 @@ def update_check():
 	if OLD_STATUS != NEW_STATUS:
 		with open(TMP_FILE, "w") as file:
 			file.write(NEW_STATUS)
-		file.close()
 		send_message(f"*{HOSTNAME}* (updates)\n{MESSAGE}")
 
 while True:
