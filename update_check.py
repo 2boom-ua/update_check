@@ -8,18 +8,21 @@ import time
 import requests
 from schedule import every, repeat, run_pending
 
+
 def getSTR(filename : str):
 	ret = ""
 	if os.path.exists(filename):
 		ret = open(filename, 'r').read().strip('\n')
 	return ret
-	
+
+
 def getHostname():
 	hostname = ""
 	if os.path.exists('/proc/sys/kernel/hostname'):
 		with open('/proc/sys/kernel/hostname', "r") as file:
 			hostname = file.read().strip('\n')
 	return hostname
+
 
 def send_message(message : str):
 	message = message.replace("\t", "")
@@ -60,12 +63,13 @@ def send_message(message : str):
 		except requests.exceptions.RequestException as e:
 			print("error:", e)
 
+
 if __name__ == "__main__":
 	FileMessage = [['/run/dietpi/.apt_updates', 'apt update(s) available'], ['/run/dietpi/.update_available', 'upgrade available'],\
 	['/run/dietpi/.live_patches', 'live patch(es) available']]
 	HOSTNAME = getHostname()
 	CURRENT_PATH =  os.path.dirname(os.path.realpath(__file__))
-	TMP_FILE = "/tmp/status_update.tmp"
+	OLD_STATUS = ""
 	ORANGE_DOT, GREEN_DOT = "\U0001F7E0", "\U0001F7E2"
 	TELEGRAM_ON = DISCORD_ON = GOTIFY_ON = NTFY_ON = SLACK_ON = PUSHBULLET_ON = False
 	TOKEN = CHAT_ID = DISCORD_WEB = GOTIFY_WEB = GOTIFY_TOKEN = NTFY_WEB = NTFY_SUB = PUSHBULLET_API = SLACK_WEB = MESSAGING_SERVICE = ""
@@ -102,18 +106,16 @@ if __name__ == "__main__":
 		send_message(f"*{HOSTNAME}* (updates)\nupgrade, updates, patches monitor:\n{MESSAGING_SERVICE}- polling period: {MIN_REPEAT} minute(s).")
 	else:
 		print("config.json not found")
-	
+
+
 @repeat(every(MIN_REPEAT).minutes)
 def update_check():
-	NEW_STATUS = OLD_STATUS = MESSAGE =""
+	NEW_STATUS = MESSAGE =""
 	CURRENT_STATUS = []
-	OLD_STATUS += "0" * len(FileMessage)
+	global OLD_STATUS
+	if len(OLD_STATUS) == 0:
+		OLD_STATUS += "0" * len(FileMessage)
 	CURRENT_STATUS = list(OLD_STATUS)
-	if not os.path.exists(TMP_FILE) or os.path.getsize(TMP_FILE) != len(FileMessage):
-		with open(TMP_FILE, "w") as file:
-			file.write(OLD_STATUS)
-	with open(TMP_FILE, "r") as file:
-		OLD_STATUS = file.read()
 	for i in range(len(OLD_STATUS)):
 		if os.path.exists(FileMessage[i][0]):
 			if OLD_STATUS[i] == "0":
@@ -125,9 +127,9 @@ def update_check():
 			CURRENT_STATUS[i] = "0"
 	NEW_STATUS = "".join(CURRENT_STATUS)
 	if OLD_STATUS != NEW_STATUS:
-		with open(TMP_FILE, "w") as file:
-			file.write(NEW_STATUS)
+		OLD_STATUS = NEW_STATUS
 		send_message(f"*{HOSTNAME}* (updates)\n{MESSAGE}")
+
 
 while True:
     run_pending()
