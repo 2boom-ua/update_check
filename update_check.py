@@ -9,10 +9,11 @@ import requests
 from schedule import every, repeat, run_pending
 
 
-def getSTR(filename : str):
+def getStr(filename : str):
 	ret = ""
 	if os.path.exists(filename):
-		ret = open(filename, 'r').read().strip('\n')
+		with open(filename, 'r') as file:
+			ret = file.read().strip('\n')
 	return ret
 
 
@@ -24,42 +25,42 @@ def getHostname():
 	return hostname
 
 
-def send_message(message : str):
+def SendMessage(message : str):
 	message = message.replace("\t", "")
-	if TELEGRAM_ON:
+	if telegram_on:
 		try:
-			response = requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={"chat_id": CHAT_ID, "text": message, "parse_mode": "Markdown"})
+			response = requests.post(f"https://api.telegram.org/bot{token}/sendMessage", json={"chat_id": chat_id, "text": message, "parse_mode": "Markdown"})
 		except requests.exceptions.RequestException as e:
 			print("error:", e)
-	if DISCORD_ON:
+	if discord_on:
 		try:
-			response = requests.post(DISCORD_WEB, json={"content": message.replace("*", "**")})
+			response = requests.post(discord_web, json={"content": message.replace("*", "**")})
 		except requests.exceptions.RequestException as e:
 			print("error:", e)
-	if SLACK_ON:
+	if slack_on:
 		try:
-			response = requests.post(SLACK_WEB, json = {"text": message})
+			response = requests.post(slack_web, json = {"text": message})
 		except requests.exceptions.RequestException as e:
 			print("error:", e)
 	message = message.replace("*", "")
 	header = message[:message.index("\n")].rstrip("\n")
 	message = message[message.index("\n"):].strip("\n")
-	if GOTIFY_ON:
+	if gotify_on:
 		try:
-			response = requests.post(f"{GOTIFY_WEB}/message?token={GOTIFY_TOKEN}",\
+			response = requests.post(f"{gotify_web}/message?token={gotify_token}",\
 			json={'title': header, 'message': message, 'priority': 0})
 		except requests.exceptions.RequestException as e:
 			print("error:", e)
-	if NTFY_ON:
+	if ntfy_on:
 		try:
-			response = requests.post(f"{NTFY_WEB}/{NTFY_SUB}", data=message.encode(encoding='utf-8'), headers={"Title": header})
+			response = requests.post(f"{ntfy_web}/{ntfy_sub}", data=message.encode(encoding='utf-8'), headers={"Title": header})
 		except requests.exceptions.RequestException as e:
 			print("error:", e)
-	if PUSHBULLET_ON:
+	if pushbullet_on:
 		try:
 			response = requests.post('https://api.pushbullet.com/v2/pushes',\
 			json={'type': 'note', 'title': header, 'body': message},\
-			headers={'Access-Token': PUSHBULLET_API, 'Content-Type': 'application/json'})
+			headers={'Access-Token': pushbullet_api, 'Content-Type': 'application/json'})
 		except requests.exceptions.RequestException as e:
 			print("error:", e)
 
@@ -67,70 +68,71 @@ def send_message(message : str):
 if __name__ == "__main__":
 	FileMessage = [['/run/dietpi/.apt_updates', 'apt update(s) available'], ['/run/dietpi/.update_available', 'upgrade available'],\
 	['/run/dietpi/.live_patches', 'live patch(es) available']]
-	HOSTNAME = getHostname()
-	CURRENT_PATH =  os.path.dirname(os.path.realpath(__file__))
-	OLD_STATUS = ""
-	ORANGE_DOT, GREEN_DOT = "\U0001F7E0", "\U0001F7E2"
-	TELEGRAM_ON = DISCORD_ON = GOTIFY_ON = NTFY_ON = SLACK_ON = PUSHBULLET_ON = False
-	TOKEN = CHAT_ID = DISCORD_WEB = GOTIFY_WEB = GOTIFY_TOKEN = NTFY_WEB = NTFY_SUB = PUSHBULLET_API = SLACK_WEB = MESSAGING_SERVICE = ""
-	if os.path.exists(f"{CURRENT_PATH}/config.json"):
-		parsed_json = json.loads(open(f"{CURRENT_PATH}/config.json", "r").read())
-		TELEGRAM_ON = parsed_json["TELEGRAM"]["ON"]
-		DISCORD_ON = parsed_json["DISCORD"]["ON"]
-		GOTIFY_ON = parsed_json["GOTIFY"]["ON"]
-		NTFY_ON = parsed_json["NTFY"]["ON"]
-		PUSHBULLET_ON = parsed_json["PUSHBULLET"]["ON"]
-		SLACK_ON = parsed_json["SLACK"]["ON"]
-		if TELEGRAM_ON:
-			TOKEN = parsed_json["TELEGRAM"]["TOKEN"]
-			CHAT_ID = parsed_json["TELEGRAM"]["CHAT_ID"]
-			MESSAGING_SERVICE += "- messenging: Telegram,\n"
-		if DISCORD_ON:
-			DISCORD_WEB = parsed_json["DISCORD"]["WEB"]
-			MESSAGING_SERVICE += "- messenging: Discord,\n"
-		if GOTIFY_ON:
-			GOTIFY_WEB = parsed_json["GOTIFY"]["WEB"]
-			GOTIFY_TOKEN = parsed_json["GOTIFY"]["TOKEN"]
-			MESSAGING_SERVICE += "- messenging: Gotify,\n"
-		if NTFY_ON:
-			NTFY_WEB = parsed_json["NTFY"]["WEB"]
-			NTFY_SUB = parsed_json["NTFY"]["SUB"]
-			MESSAGING_SERVICE += "- messenging: Ntfy,\n"
-		if PUSHBULLET_ON:
-			PUSHBULLET_API = parsed_json["PUSHBULLET"]["API"]
-			MESSAGING_SERVICE += "- messenging: Pushbullet,\n"
-		if SLACK_ON:
-			SLACK_WEB = parsed_json["SLACK"]["WEB"]
-			MESSAGING_SERVICE += "- messenging: Slack,\n"
-		MIN_REPEAT = int(parsed_json["MIN_REPEAT"])
-		send_message(f"*{HOSTNAME}* (updates)\nupgrade, updates, patches monitor:\n{MESSAGING_SERVICE}- polling period: {MIN_REPEAT} minute(s).")
+	hostname = getHostname()
+	current_path =  os.path.dirname(os.path.realpath(__file__))
+	old_status = ""
+	orange_dot, green_dot = "\U0001F7E0", "\U0001F7E2"
+	telegram_on = discord_on = gotify_on = ntfy_on = slack_on = pushbullet_on = False
+	token = chat_id = discord_web = gotify_web = gotify_token = ntfy_web = ntfy_sub = pushbullet_api = slack_web = messaging_service = ""
+	if os.path.exists(f"{current_path}/config.json"):
+		with open(f"{current_path}/config.json", "r") as file:
+			parsed_json = json.loads(file.read())
+		telegram_on = parsed_json["TELEGRAM"]["ON"]
+		discord_on = parsed_json["DISCORD"]["ON"]
+		gotify_on = parsed_json["GOTIFY"]["ON"]
+		ntfy_on = parsed_json["NTFY"]["ON"]
+		pushbullet_on = parsed_json["PUSHBULLET"]["ON"]
+		slack_on = parsed_json["SLACK"]["ON"]
+		if telegram_on:
+			token = parsed_json["TELEGRAM"]["TOKEN"]
+			chat_id = parsed_json["TELEGRAM"]["CHAT_ID"]
+			messaging_service += "- messenging: Telegram,\n"
+		if discord_on:
+			discord_web = parsed_json["DISCORD"]["WEB"]
+			messaging_service += "- messenging: Discord,\n"
+		if gotify_on:
+			gotify_web = parsed_json["GOTIFY"]["WEB"]
+			gotify_token = parsed_json["GOTIFY"]["TOKEN"]
+			messaging_service += "- messenging: Gotify,\n"
+		if ntfy_on:
+			ntfy_web = parsed_json["NTFY"]["WEB"]
+			ntfy_sub = parsed_json["NTFY"]["SUB"]
+			messaging_service += "- messenging: Ntfy,\n"
+		if pushbullet_on:
+			pushbullet_api = parsed_json["PUSHBULLET"]["API"]
+			messaging_service += "- messenging: Pushbullet,\n"
+		if slack_on:
+			slack_web = parsed_json["SLACK"]["WEB"]
+			messaging_service += "- messenging: Slack,\n"
+		min_repeat = int(parsed_json["MIN_REPEAT"])
+		SendMessage(f"*{hostname}* (updates)\nupgrade, updates, patches monitor:\n{messaging_service}- polling period: {min_repeat} minute(s).")
 	else:
 		print("config.json not found")
 
 
-@repeat(every(MIN_REPEAT).minutes)
+@repeat(every(min_repeat).minutes)
 def update_check():
-	NEW_STATUS = MESSAGE =""
-	CURRENT_STATUS = []
-	global OLD_STATUS
-	if len(OLD_STATUS) == 0:
-		OLD_STATUS += "0" * len(FileMessage)
-	CURRENT_STATUS = list(OLD_STATUS)
-	for i in range(len(OLD_STATUS)):
+	new_status = message =""
+	current_status = []
+	global old_status
+	if len(old_status) == 0:
+		old_status += "0" * len(FileMessage)
+	current_status = list(old_status)
+	for i in range(len(old_status)):
 		if os.path.exists(FileMessage[i][0]):
-			if OLD_STATUS[i] == "0":
-				MESSAGE += f"{ORANGE_DOT} - {getSTR(FileMessage[i][0])} {FileMessage[i][1]}\n"
-			CURRENT_STATUS[i] = "1"
+			if old_status[i] == "0":
+				message += f"{orange_dot} {getStr(FileMessage[i][0])} {FileMessage[i][1]}\n"
+			current_status[i] = "1"
 		else:
-			if OLD_STATUS[i] == "1":
-				MESSAGE += f"{GREEN_DOT} - no {FileMessage[i][1]}\n"
-			CURRENT_STATUS[i] = "0"
-	NEW_STATUS = "".join(CURRENT_STATUS)
-	if OLD_STATUS != NEW_STATUS:
-		OLD_STATUS = NEW_STATUS
-		send_message(f"*{HOSTNAME}* (updates)\n{MESSAGE}")
+			if old_status[i] == "1":
+				message += f"{green_dot} no {FileMessage[i][1]}\n"
+			current_status[i] = "0"
+	new_status = "".join(current_status)
+	if old_status != new_status:
+		old_status = new_status
+		SendMessage(f"*{hostname}* (updates)\n{message}")
 
 
 while True:
-    run_pending()
-    time.sleep(1)
+	run_pending()
+	time.sleep(1)
