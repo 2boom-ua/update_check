@@ -7,6 +7,7 @@ import os
 import time
 import requests
 from schedule import every, repeat, run_pending
+from requests.exceptions import RequestException
 
 
 def getStr(filename : str):
