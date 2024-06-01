@@ -119,14 +119,14 @@ def update_check():
 	if len(old_status) == 0:
 		old_status += "0" * len(FileMessage)
 	current_status = list(old_status)
-	for i in range(len(old_status)):
-		if os.path.exists(FileMessage[i][0]):
+	for i, item in enumerate(FileMessage):
+		if os.path.exists(item[0]):
 			if old_status[i] == "0":
-				message += f"{orange_dot} {getStr(FileMessage[i][0])} {FileMessage[i][1]}\n"
+				message += f"{orange_dot} {getStr(item[0])} {item[1]}\n"
 			current_status[i] = "1"
 		else:
 			if old_status[i] == "1":
-				message += f"{green_dot} no {FileMessage[i][1]}\n"
+				message += f"{green_dot} no {item[1]}\n"
 			current_status[i] = "0"
 	new_status = "".join(current_status)
 	if old_status != new_status:
