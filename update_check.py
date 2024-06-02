@@ -116,8 +116,7 @@ def update_check():
 	new_status = message =""
 	current_status = []
 	global old_status
-	if len(old_status) == 0:
-		old_status += "0" * len(FileMessage)
+	if not old_status: old_status += "0" * len(FileMessage)
 	current_status = list(old_status)
 	for i, item in enumerate(FileMessage):
 		if os.path.exists(item[0]):
