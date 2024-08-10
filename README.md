@@ -1,5 +1,5 @@
 # update_check
-update informer for Dietpi (Telegram, Discord, Gotify, Ntfy, Pushbullet, Slack) as linux service
+update informer for Dietpi (Telegram, Discord, Gotify, Ntfy, Pushbullet, Pushover, Slack) as linux service
 
 ![alt text](https://github.com/2boom-ua/update_check/blob/main/screen-tg.jpg?raw=true)
 
