@@ -78,6 +78,19 @@ pip install -r requirements.txt
             "...."
         ]
     },
+    "PUSHOVER": {
+        "ON": true,
+        "TOKENS": [
+            "first tocken",
+            "second tocken",
+            "...."
+        ],
+        "USER_KEYS": [
+            "first user_key",
+            "second user_key",
+            "...."
+        ]
+    },
     "MIN_REPEAT": 1
 }
 ```
