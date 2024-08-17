@@ -19,9 +19,10 @@ def getStr(filename : str):
 
 def getHostname():
 	hostname = ""
-	if os.path.exists('/proc/sys/kernel/hostname'):
-		with open('/proc/sys/kernel/hostname', "r") as file:
-			hostname = file.read().strip('\n')
+	hostname_path = '/proc/sys/kernel/hostname'
+	if os.path.exists(hostname_path):
+		with open(hostname_path, "r") as file:
+			hostname = file.read().strip()
 	return hostname
 
 
