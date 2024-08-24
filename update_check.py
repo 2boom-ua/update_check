@@ -10,6 +10,7 @@ from schedule import every, repeat, run_pending
 
 
 def get_string(filename : str):
+"""Return the content of the file as a string"""
 	ret = ""
 	if os.path.exists(filename):
 		with open(filename, 'r') as file:
@@ -18,6 +19,7 @@ def get_string(filename : str):
 
 
 def get_hostname():
+"""Get the hostname."""
 	hostname = ""
 	hostname_path = '/proc/sys/kernel/hostname'
 	if os.path.exists(hostname_path):
@@ -27,6 +29,7 @@ def get_hostname():
 
 
 def send_message(message: str):
+"""Send notifications to various messaging services (Telegram, Discord, Slack, Gotify, Ntfy, Pushbullet, Pushover)."""
 	def send_request(url, json_data=None, data=None, headers=None):
 		try:
 			response = requests.post(url, json=json_data, data=data, headers=headers)
@@ -75,6 +78,7 @@ def send_message(message: str):
 
 
 if __name__ == "__main__":
+"""Load configuration and initialize monitoring"""
 	update_status_files = [
 		['/run/dietpi/.apt_updates', 'apt update(s) available'],
 		['/run/dietpi/.update_available', 'upgrade available'],
@@ -110,6 +114,7 @@ if __name__ == "__main__":
 
 @repeat(every(min_repeat).minutes)
 def update_check():
+"""Periodically check for updates, upgrade and patch aviable"""
 	new_status = message =""
 	current_status = []
 	global old_status
