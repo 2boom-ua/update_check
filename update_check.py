@@ -9,7 +9,7 @@ import requests
 from schedule import every, repeat, run_pending
 
 
-def getStr(filename : str):
+def get_string(filename : str):
 	ret = ""
 	if os.path.exists(filename):
 		with open(filename, 'r') as file:
@@ -17,7 +17,7 @@ def getStr(filename : str):
 	return ret
 
 
-def getHostname():
+def get_hostname():
 	hostname = ""
 	hostname_path = '/proc/sys/kernel/hostname'
 	if os.path.exists(hostname_path):
@@ -74,11 +74,13 @@ def send_message(message: str):
 			send_request(url, json_data)
 
 
-
 if __name__ == "__main__":
-	FileMessage = [['/run/dietpi/.apt_updates', 'apt update(s) available'], ['/run/dietpi/.update_available', 'upgrade available'],\
-	['/run/dietpi/.live_patches', 'live patch(es) available']]
-	hostname = getHostname()
+	update_status_files = [
+		['/run/dietpi/.apt_updates', 'apt update(s) available'],
+		['/run/dietpi/.update_available', 'upgrade available'],
+		['/run/dietpi/.live_patches', 'live patch(es) available']
+	]
+	hostname = get_hostname()
 	header = f"*{hostname}* (updates)\n"
 	current_path =  os.path.dirname(os.path.realpath(__file__))
 	dots = {"orange": "\U0001F7E0", "green": "\U0001F7E2"}
@@ -111,16 +113,16 @@ def update_check():
 	new_status = message =""
 	current_status = []
 	global old_status
-	if not old_status: old_status += "0" * len(FileMessage)
+	if not old_status: old_status += "0" * len(update_status_files)
 	current_status = list(old_status)
-	for i, item in enumerate(FileMessage):
-		if os.path.exists(item[0]):
+	for i, (file_path, description) in enumerate(update_status_files):
+		if os.path.exists(file_path):
 			if old_status[i] == "0":
-				message += f"{orange_dot} {getStr(item[0])} {item[1]}\n"
+				message += f"{orange_dot} {get_string(file_path)} {description}\n"
 			current_status[i] = "1"
 		else:
 			if old_status[i] == "1":
-				message += f"{green_dot} no {item[1]}\n"
+				message += f"{green_dot} no {description}\n"
 			current_status[i] = "0"
 	new_status = "".join(current_status)
 	if old_status != new_status:
