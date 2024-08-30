@@ -9,16 +9,15 @@ import requests
 from schedule import every, repeat, run_pending
 
 
-def get_string(filename : str):
+def get_string(filename: str) -> str:
 	"""Return the content of the file as a string"""
-	ret = ""
 	if os.path.exists(filename):
 		with open(filename, 'r') as file:
-			ret = file.read().strip('\n')
-	return ret
+			return file.read().strip('\n')
+	return ""
 
 
-def get_hostname():
+def get_hostname() -> str:
 	"""Get the hostname."""
 	hostname = ""
 	hostname_path = '/proc/sys/kernel/hostname'
@@ -100,8 +99,8 @@ if __name__ == "__main__":
 		orange_dot, green_dot = dots["orange"], dots["green"]
 		telegram_on, discord_on, gotify_on, ntfy_on, pushbullet_on, pushover_on, slack_on = (parsed_json[key]["ON"] for key in ["TELEGRAM", "DISCORD", "GOTIFY", "NTFY", "PUSHBULLET", "PUSHOVER", "SLACK"])
 		services = {
-		"TELEGRAM": ["TOKENS", "CHAT_IDS"], "DISCORD": ["TOKENS"], "SLACK": ["TOKENS"],
-		"GOTIFY": ["TOKENS", "CHAT_URLS"], "NTFY": ["TOKENS", "CHAT_URLS"], "PUSHBULLET": ["TOKENS"], "PUSHOVER": ["TOKENS", "USER_KEYS"]
+		"TELEGRAM": ["TOKENS", "CHAT_IDS"], "DISCORD": ["TOKENS"], "SLACK": ["TOKENS"], "GOTIFY": ["TOKENS", "CHAT_URLS"],
+		"NTFY": ["TOKENS", "CHAT_URLS"], "PUSHBULLET": ["TOKENS"], "PUSHOVER": ["TOKENS", "USER_KEYS"]
 		}
 		for service, keys in services.items():
 			if parsed_json[service]["ON"]:
