@@ -88,14 +88,14 @@ if __name__ == "__main__":
 	header = f"*{hostname}* (updates)\n"
 	current_path =  os.path.dirname(os.path.realpath(__file__))
 	dots = {"orange": "\U0001F7E0", "green": "\U0001F7E2"}
-	square_dot = {"orange": "\U0001F7E7", "green": "\U0001F7E9"}
+	square_dots = {"orange": "\U0001F7E7", "green": "\U0001F7E9"}
 	monitoring_mg = old_status = ""
 	if os.path.exists(f"{current_path}/config.json"):
 		with open(f"{current_path}/config.json", "r") as file:
 			parsed_json = json.loads(file.read())
 		default_dot_style = parsed_json["DEFAULT_DOT_STYLE"]
 		if not default_dot_style:
-			dots = square_dot
+			dots = square_dots
 		orange_dot, green_dot = dots["orange"], dots["green"]
 		telegram_on, discord_on, gotify_on, ntfy_on, pushbullet_on, pushover_on, slack_on = (parsed_json[key]["ON"] for key in ["TELEGRAM", "DISCORD", "GOTIFY", "NTFY", "PUSHBULLET", "PUSHOVER", "SLACK"])
 		services = {
