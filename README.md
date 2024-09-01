@@ -1,7 +1,7 @@
 # update_check
 update informer for Dietpi (Telegram, Discord, Gotify, Ntfy, Pushbullet, Pushover, Slack) as linux service
 
-![alt text](https://github.com/2boom-ua/update_check/blob/main/screen-tg.jpg?raw=true)
+![alt text](https://github.com/2boom-ua/update_check/blob/main/screenshot_tg.jpg?raw=true)
 
 **crontab**
 ```
