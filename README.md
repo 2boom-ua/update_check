@@ -1,5 +1,5 @@
 # update_check
-update informer for Dietpi (Telegram, Discord, Gotify, Ntfy, Pushbullet, Pushover, Slack) as linux service
+Update Informer for DietPi: Send notifications via Telegram, Discord, Gotify, Ntfy, Pushbullet, Pushover, and Slack, running as a Linux service.
 
 ![alt text](https://github.com/2boom-ua/update_check/blob/main/screenshot_tg.png?raw=true)
 
