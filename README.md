@@ -91,6 +91,24 @@ pip install -r requirements.txt
             "...."
         ]
     },
+    "MATRIX": {
+        "ON": false,
+        "TOKENS": [
+            "first tocken",
+            "second tocken",
+            "...."
+        ],
+        "SERVER_URLS": [
+            "first server_url",
+            "second server_url",
+            "...."
+        ],
+        "ROOM_IDS": [
+            "!first room_id",
+            "!second room_id",
+            "...."
+        ]
+    },
     "DEFAULT_DOT_STYLE": true,
     "MIN_REPEAT": 1
 }
