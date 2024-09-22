@@ -30,7 +30,6 @@ This Python script monitors the availability of system updates, upgrades, and li
 ```
 0 */1 * * * /boot/dietpi/dietpi-update 2
 ```
-### Installation
 ### Clone the repository:
 ```
 git clone https://github.com/2boom-ua/dockcheck.git
