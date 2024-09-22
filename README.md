@@ -1,10 +1,10 @@
-# Update Monitoring Script
+## Update Monitoring Script
 
-## Overview
+### Overview
 
 This Python script monitors the availability of system updates, upgrades, and live patches on a DietPi system. It periodically checks specific files and sends notifications through various messaging services when updates are available.
 
-## Features
+### Features
 
 - **Update Monitoring:** Checks for available updates, upgrades, and live patches.
 - **Notifications:** Sends alerts via:
@@ -21,7 +21,7 @@ This Python script monitors the availability of system updates, upgrades, and li
 
 ![alt text](https://github.com/2boom-ua/update_check/blob/main/screenshot_tg.png?raw=true)
 
-## Requirements
+### Requirements
 - Python 3.x
 - Docker installed and running
 - Dependencies: `requests`, `schedule`
@@ -30,7 +30,7 @@ This Python script monitors the availability of system updates, upgrades, and li
 ```
 0 */1 * * * /boot/dietpi/dietpi-update 2
 ```
-## Installation
+### Installation
 ### Clone the repository:
 ```
 git clone https://github.com/2boom-ua/dockcheck.git
