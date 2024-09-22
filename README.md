@@ -1,18 +1,48 @@
-# update_check
-Update Informer for DietPi: Send notifications via Telegram, Discord, Gotify, Ntfy, Pushbullet, Pushover, Matrix, and Slack, running as a Linux service.
+# Update Monitoring Script
+
+## Overview
+
+This Python script monitors the availability of system updates, upgrades, and live patches on a DietPi system. It periodically checks specific files and sends notifications through various messaging services when updates are available.
+
+## Features
+
+- **Update Monitoring:** Checks for available updates, upgrades, and live patches.
+- **Notifications:** Sends alerts via:
+  - Telegram
+  - Discord
+  - Slack
+  - Gotify
+  - Ntfy
+  - Pushbullet
+  - Pushover
+  - Matrix
+- **Dynamic Configuration:** Load settings from a JSON configuration file.
+- **Polling Period:** Adjustable interval for checking updates.
 
 ![alt text](https://github.com/2boom-ua/update_check/blob/main/screenshot_tg.png?raw=true)
 
-**crontab**
+## Requirements
+- Python 3.x
+- Docker installed and running
+- Dependencies: `requests`, `schedule`
+
+### Edit crontab (crontab -e)
 ```
 0 */1 * * * /boot/dietpi/dietpi-update 2
 ```
-
+## Installation
+### Clone the repository:
+```
+git clone https://github.com/2boom-ua/dockcheck.git
+cd dockcheck
+```
+### Install required Python packages:
 ```
 pip install -r requirements.txt
 ```
 
-**config.json**
+### Edit config.json:
+A **config.json** file in the same directory as the script, and include your API tokens and configuration settings.
 ```
 {
     "TELEGRAM": {
@@ -113,10 +143,14 @@ pip install -r requirements.txt
     "MIN_REPEAT": 1
 }
 ```
-**make as service**
+## Running as a Linux Service
+You can set this script to run as a Linux service for continuous monitoring.
+
+Create a systemd service file:
 ```
 nano /etc/systemd/system/update_check.service
 ```
+Add the following content:
 ```
 [Unit]
 Description=check update aviable
@@ -137,3 +171,11 @@ systemctl enable update_check.service
 ```
 systemctl start update_check.service
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [MIT License](https://opensource.org/licenses/MIT) for details.
+
+## Author
+
+- **2boom** - [GitHub](https://github.com/2boom-ua)
