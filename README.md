@@ -32,7 +32,7 @@ This Python script monitors the availability of system updates, upgrades, and li
 ```
 ### Clone the repository:
 ```
-git clone https://github.com/2boom-ua/dockcheck.git
+git clone https://github.com/2boom-ua/update_check.git
 cd dockcheck
 ```
 ### Install required Python packages:
