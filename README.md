@@ -7,7 +7,7 @@ This Python script monitors the availability of system updates, upgrades, and li
 ### Features
 
 - **Update Monitoring:** Checks for available updates, upgrades, and live patches.
-- **Notifications:** Sends alerts via:
+- **Real-time notifications with support for multiple accounts** via:
   - Telegram
   - Discord
   - Slack
