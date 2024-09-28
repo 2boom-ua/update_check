@@ -16,6 +16,7 @@ This Python script monitors the availability of system updates, upgrades, and li
   - Pushbullet
   - Pushover
   - Matrix
+  - Mattermost
 - **Dynamic Configuration:** Load settings from a JSON configuration file.
 - **Polling Period:** Adjustable interval for checking updates.
 
@@ -135,6 +136,14 @@ A **config.json** file in the same directory as the script, and include your API
         "ROOM_IDS": [
             "!first room_id",
             "!second room_id",
+            "...."
+        ]
+    },
+    "MATTERMOST": {
+        "ON": false,
+        "CHAT_URLS": [
+            "first server_url",
+            "second server_url",
             "...."
         ]
     },
