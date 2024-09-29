@@ -15,6 +15,7 @@ This Python script monitors the availability of system updates, upgrades, and li
   - Ntfy
   - Pushbullet
   - Pushover
+  - Rocket.chat
   - Matrix
   - Mattermost
 - **Dynamic Configuration:** Load settings from a JSON configuration file.
@@ -60,9 +61,9 @@ A **config.json** file in the same directory as the script, and include your API
     },
     "DISCORD": {
         "ON": false,
-        "TOKENS": [
-            "first tocken",
-            "second tocken",
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
             "...."
         ]
     },
@@ -144,6 +145,29 @@ A **config.json** file in the same directory as the script, and include your API
         "CHAT_URLS": [
             "first server_url",
             "second server_url",
+            "...."
+        ]
+    },
+    "ROCKET": {
+        "ON": false,
+        "TOKENS": [
+            "first tocken",
+            "second tocken",
+            "...."
+        ],
+		"USER_IDS": [
+            "first user_id",
+            "second user_id",
+            "...."
+        ],
+        "SERVER_URLS": [
+           "first server_url",
+            "second server_url",
+            "...."
+        ],
+		"CHANNELS": [
+            "#first channel",
+            "#second channel",
             "...."
         ]
     },
