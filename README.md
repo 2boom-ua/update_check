@@ -1,5 +1,7 @@
 ## Update Monitoring Script
-
+<div align="center">  
+    <img src="https://github.com/2boom-ua/update_chek/blob/main/update_check.jpg?raw=true" alt="" width="314" height="148">
+</div>
 ### Overview
 
 This Python script monitors the availability of system updates, upgrades, and live patches on a DietPi system. It periodically checks specific files and sends notifications through various messaging services when updates are available.
