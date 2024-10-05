@@ -1,6 +1,6 @@
 ## Update Monitoring Script
 <div align="center">  
-    <img src="https://github.com/2boom-ua/update_chek/blob/main/update_check.jpg?raw=true" alt="" width="314" height="148">
+	<img src="https://github.com/2boom-ua/update_check/blob/main/update_check.jpg?raw=true" alt="" width="314" height="148">
 </div>
 ### Overview
 
