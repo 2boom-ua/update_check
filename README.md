@@ -49,7 +49,7 @@ A **config.json** file in the same directory as the script, and include your API
 ```
 {
     "TELEGRAM": {
-        "ON": true,
+        "ON": false,
         "TOKENS": [
             "first tocken",
             "second tocken",
@@ -71,9 +71,9 @@ A **config.json** file in the same directory as the script, and include your API
     },
     "SLACK": {
         "ON": false,
-        "TOKENS": [
-            "first tocken",
-            "second tocken",
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
             "...."
         ]
     },
@@ -84,24 +84,19 @@ A **config.json** file in the same directory as the script, and include your API
             "second tocken",
             "...."
         ],
-        "CHAT_WEB": [
+        "CHAT_URLS": [
             "first server_url",
             "second server_url",
             "...."
         ]
     },
     "NTFY": {
-        "ON": true,
-        "TOKENS": [
-            "first tocken",
-            "second tocken",
+        "ON": false,
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
             "...."
-        ],
-        "CHAT_WEB": [
-            "first server_url",
-            "second server_url",
-            "...."
-        ]
+		]
     },
     "PUSHBULLET": {
         "ON": false,
@@ -112,7 +107,7 @@ A **config.json** file in the same directory as the script, and include your API
         ]
     },
     "PUSHOVER": {
-        "ON": true,
+        "ON": false,
         "TOKENS": [
             "first tocken",
             "second tocken",
@@ -144,9 +139,9 @@ A **config.json** file in the same directory as the script, and include your API
     },
     "MATTERMOST": {
         "ON": false,
-        "CHAT_URLS": [
-            "first server_url",
-            "second server_url",
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
             "...."
         ]
     },
@@ -167,7 +162,7 @@ A **config.json** file in the same directory as the script, and include your API
             "second server_url",
             "...."
         ],
-		"CHANNELS": [
+		"CHANNEL_IDS": [
             "#first channel",
             "#second channel",
             "...."
