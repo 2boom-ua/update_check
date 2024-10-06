@@ -1,6 +1,6 @@
 {
     "TELEGRAM": {
-        "ON": true,
+        "ON": false,
         "TOKENS": [
             "first tocken",
             "second tocken",
@@ -22,9 +22,9 @@
     },
     "SLACK": {
         "ON": false,
-        "TOKENS": [
-            "first tocken",
-            "second tocken",
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
             "...."
         ]
     },
@@ -35,24 +35,19 @@
             "second tocken",
             "...."
         ],
-        "CHAT_WEB": [
+        "CHAT_URLS": [
             "first server_url",
             "second server_url",
             "...."
         ]
     },
     "NTFY": {
-        "ON": true,
-        "TOKENS": [
-            "first tocken",
-            "second tocken",
+        "ON": false,
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
             "...."
-        ],
-        "CHAT_WEB": [
-            "first server_url",
-            "second server_url",
-            "...."
-        ]
+		]
     },
     "PUSHBULLET": {
         "ON": false,
@@ -63,7 +58,7 @@
         ]
     },
     "PUSHOVER": {
-        "ON": true,
+        "ON": false,
         "TOKENS": [
             "first tocken",
             "second tocken",
@@ -95,9 +90,9 @@
     },
     "MATTERMOST": {
         "ON": false,
-        "CHAT_URLS": [
-            "first server_url",
-            "second server_url",
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
             "...."
         ]
     },
@@ -118,7 +113,7 @@
             "second server_url",
             "...."
         ],
-		"CHANNELS": [
+		"CHANNEL_IDS": [
             "#first channel",
             "#second channel",
             "...."
