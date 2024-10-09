@@ -21,6 +21,9 @@ This Python script monitors the availability of system updates, upgrades, and li
   - Rocket.chat
   - Matrix
   - Mattermost
+  - Pumble
+  - Flock
+  - Zulip
 - **Dynamic Configuration:** Load settings from a JSON configuration file.
 - **Polling Period:** Adjustable interval for checking updates.
 
@@ -169,12 +172,44 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+    "PUMBLE": {
+        "ON": false,
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
+            "...."
+		]
+    },
+    "ZULIP": {
+        "ON": false,
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
+            "...."
+		]
+    },
+    "CUSTOM": {
+        "ON": false,
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
+            "...."
+		]
+        "STD_BOLDS" : [
+            true,
+            false,
+            "...."
+                ]
+    },
     "DEFAULT_DOT_STYLE": true,
     "MIN_REPEAT": 1
 }
 ```
 | Item   | Required   | Description   |
 |------------|------------|------------|
+| STD_BOLDS | true/false | "**" **standard Markdown**, "*" *non-standard Markdown* |
+| | | Standard Markdown use - Pumble, Mattermost, Discord, Ntfy, Gotify |
+| | | Non-standard Markdown use - Telegram, Zulip, Flock, Slack, RocketChat, Flock. |
 | DEFAULT_DOT_STYLE | true/false | Round/Square dots. |
 | SEC_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
 
