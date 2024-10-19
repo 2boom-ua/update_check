@@ -119,7 +119,7 @@
             "...."
         ]
     },
-   "FLOCK": {
+    "FLOCK": {
         "ENABLED": false,
         "WEBHOOK_URLS": [
             "first url",
@@ -128,7 +128,7 @@
 		]
     },
     "PUMBLE": {
-        "ENABLED"": false,
+        "ENABLED": false,
         "WEBHOOK_URLS": [
             "first url",
             "second url",
