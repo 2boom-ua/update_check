@@ -24,6 +24,7 @@ This Python script monitors the availability of system updates, upgrades, and li
   - Pumble
   - Flock
   - Zulip
+  - Apprise
 - **Dynamic Configuration:** Load settings from a JSON configuration file.
 - **Polling Period:** Adjustable interval for checking updates.
 
@@ -53,7 +54,7 @@ A **config.json** file in the same directory as the script, and include your API
 ```
 {
     "TELEGRAM": {
-        "ON": false,
+        "ENABLED": false,
         "TOKENS": [
             "first tocken",
             "second tocken",
@@ -66,7 +67,7 @@ A **config.json** file in the same directory as the script, and include your API
         ]
     },
     "DISCORD": {
-        "ON": false,
+        "ENABLED": false,
         "WEBHOOK_URLS": [
             "first url",
             "second url",
@@ -74,7 +75,7 @@ A **config.json** file in the same directory as the script, and include your API
         ]
     },
     "SLACK": {
-        "ON": false,
+        "ENABLED": false,
         "WEBHOOK_URLS": [
             "first url",
             "second url",
@@ -82,7 +83,7 @@ A **config.json** file in the same directory as the script, and include your API
         ]
     },
     "GOTIFY": {
-        "ON": false,
+        "ENABLED": false,
         "TOKENS": [
             "first tocken",
             "second tocken",
@@ -95,7 +96,7 @@ A **config.json** file in the same directory as the script, and include your API
         ]
     },
     "NTFY": {
-        "ON": false,
+        "ENABLED": false,
         "WEBHOOK_URLS": [
             "first url",
             "second url",
@@ -103,7 +104,7 @@ A **config.json** file in the same directory as the script, and include your API
 		]
     },
     "PUSHBULLET": {
-        "ON": false,
+        "ENABLED": false,
         "TOKENS": [
             "first tocken",
             "second tocken",
@@ -111,7 +112,7 @@ A **config.json** file in the same directory as the script, and include your API
         ]
     },
     "PUSHOVER": {
-        "ON": false,
+        "ENABLED": false,
         "TOKENS": [
             "first tocken",
             "second tocken",
@@ -124,7 +125,7 @@ A **config.json** file in the same directory as the script, and include your API
         ]
     },
     "MATRIX": {
-        "ON": false,
+        "ENABLED": false,
         "TOKENS": [
             "first tocken",
             "second tocken",
@@ -142,7 +143,7 @@ A **config.json** file in the same directory as the script, and include your API
         ]
     },
     "MATTERMOST": {
-        "ON": false,
+        "ENABLED": false,
         "WEBHOOK_URLS": [
             "first url",
             "second url",
@@ -150,7 +151,7 @@ A **config.json** file in the same directory as the script, and include your API
         ]
     },
     "ROCKET": {
-        "ON": false,
+        "ENABLED": false,
         "TOKENS": [
             "first tocken",
             "second tocken",
@@ -172,8 +173,16 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+    "FLOCK": {
+        "ENABLED": false,
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
+            "...."
+		]
+    },
     "PUMBLE": {
-        "ON": false,
+        "ENABLED": false,
         "WEBHOOK_URLS": [
             "first url",
             "second url",
@@ -181,7 +190,15 @@ A **config.json** file in the same directory as the script, and include your API
 		]
     },
     "ZULIP": {
-        "ON": false,
+        "ENABLED": false,
+        "WEBHOOK_URLS": [
+            "first url",
+            "second url",
+            "...."
+		]
+    },
+    "APPRISE": {
+        "ENABLED": false,
         "WEBHOOK_URLS": [
             "first url",
             "second url",
@@ -189,7 +206,7 @@ A **config.json** file in the same directory as the script, and include your API
 		]
     },
     "CUSTOM": {
-        "ON": false,
+        "ENABLED": false,
         "WEBHOOK_URLS": [
             "first url",
             "second url",
