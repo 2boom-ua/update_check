@@ -151,7 +151,7 @@
             "...."
 		],
         "FORMATS": [
-            "markdown"
+            "text"
         ]
     },
     "CUSTOM": {
