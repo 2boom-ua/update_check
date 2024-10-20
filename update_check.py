@@ -90,9 +90,15 @@ def SendMessage(message: str):
 			json_data = {"text": message.replace("*", "**")}
 			SendRequest(url, json_data)
 	if apprise_on:
-		for url in apprise_webhook_urls:
+		for url, mformat in zip(apprise_webhook_urls, apprise_formats):
 			headers_data = {"Content-Type": "application/json"}
-			json_data = {"body": message.replace("*", "**"), "type": "info"}
+			if mformat == "markdown":
+				formatted_message = message.replace("*", "**")
+			elif mformat == "html":
+				formatted_message = toHTMLformat(message)
+			else:
+				formatted_message = message.replace("*", "")
+			json_data = {"body": formatted_message, "type": "info", "format": mformat}
 			SendRequest(url, json_data, None, headers_data)
 	if ntfy_on:
 		for url in ntfy_webhook_urls:
@@ -158,7 +164,7 @@ if __name__ == "__main__":
 			"ROCKET": ["WEBHOOK_URLS"],
 			"ZULIP": ["WEBHOOK_URLS"],
 			"FLOCK": ["WEBHOOK_URLS"],
-			"APPRISE": ["WEBHOOK_URLS"],
+			"APPRISE": ["WEBHOOK_URLS", "FORMATS"],
 			"CUSTOM": ["WEBHOOK_URLS", "STD_BOLDS"]
 		}
 		for service, keys in services.items():
