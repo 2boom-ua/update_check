@@ -230,8 +230,10 @@ A **config.json** file in the same directory as the script, and include your API
 | STD_BOLDS | true/false | "**" **standard Markdown**, "*" *non-standard Markdown* |
 | | | Standard Markdown use - Pumble, Mattermost, Discord, Ntfy, Gotify |
 | | | Non-standard Markdown use - Telegram, Zulip, Flock, Slack, RocketChat, Flock. |
+||||
 | APPRISE |||
-| FORMATS | markdown/html/text|| 
+| FORMATS | markdown/html/text||
+||||
 | DEFAULT_DOT_STYLE | true/false | Round/Square dots. |
 | SEC_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
 
