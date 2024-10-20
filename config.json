@@ -149,7 +149,10 @@
             "first url",
             "second url",
             "...."
-		]
+		],
+        "FORMATS": [
+            "markdown"
+        ]
     },
     "CUSTOM": {
         "ENABLED": false,
