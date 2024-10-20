@@ -231,7 +231,9 @@ A **config.json** file in the same directory as the script, and include your API
 | | | Standard Markdown use - Pumble, Mattermost, Discord, Ntfy, Gotify |
 | | | Non-standard Markdown use - Telegram, Zulip, Flock, Slack, RocketChat, Flock. |
 ||||
-| APPRISE: FORMATS | markdown/html/text||
+| APPRISE: FORMATS | markdown/html/text| markdown - a simple text-based format with lightweight syntax for basic styling, |
+||| html - a web-based format using tags for advanced text styling, |
+||| text - raw text without any styling or formatting. |
 ||||
 | DEFAULT_DOT_STYLE | true/false | Round/Square dots. |
 | SEC_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
