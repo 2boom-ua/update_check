@@ -25,6 +25,7 @@ This Python script monitors the availability of system updates, upgrades, and li
   - Flock
   - Zulip
   - Apprise
+  - Custom webhook
 - **Dynamic Configuration:** Load settings from a JSON configuration file.
 - **Polling Period:** Adjustable interval for checking updates.
 
