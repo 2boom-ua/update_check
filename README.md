@@ -237,7 +237,7 @@ A **config.json** file in the same directory as the script, and include your API
 | FORMATS |markdown/html/text/asterisk | markdown - a simple text-based format with lightweight syntax for basic styling (Pumble, Mattermost, Discord, Ntfy, Gotify), |
 ||| html - a web-based format using tags for advanced text styling, |
 ||| text - raw text without any styling or formatting. |
-||| asterisk - non-standard Markdown (Telegram, Zulip, Flock, Slack, RocketChat, Flock).|
+||| asterisk - non-standard Markdown (Telegram, Zulip, Flock, Slack, RocketChat).|
 | DEFAULT_DOT_STYLE | true/false | Round/Square dots. |
 | MIN_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
 
