@@ -232,7 +232,7 @@ A **config.json** file in the same directory as the script, and include your API
 ```
 | Item   | Required   | Description   |
 |------------|------------|------------|
-| CONTENT_NAMES | text/body/content/message | |
+| CONTENT_NAMES | text/body/content/message | json = {"text/body/content/message": out_message} |
 ||||
 | FORMATS |markdown/html/text/asterisk | markdown - a simple text-based format with lightweight syntax for basic styling (Pumble, Mattermost, Discord, Ntfy, Gotify), |
 ||| html - a web-based format using tags for advanced text styling, |
