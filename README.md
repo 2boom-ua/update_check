@@ -205,7 +205,7 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
 		],
         "FORMATS": [
-            "text"
+            "markdown"
         ]
     },
     "CUSTOM": {
@@ -215,11 +215,15 @@ A **config.json** file in the same directory as the script, and include your API
             "second url",
             "...."
 		]
-        "STD_BOLDS" : [
-            true,
-            false,
-            "...."
-                ]
+        "CONTENT_NAMES": [
+            "text",
+            "body",
+	    "...."
+        ],
+        "FORMATS": [
+            "asterisk",
+            "markdown"
+        ]
     },
     "DEFAULT_DOT_STYLE": true,
     "MIN_REPEAT": 1
@@ -227,14 +231,12 @@ A **config.json** file in the same directory as the script, and include your API
 ```
 | Item   | Required   | Description   |
 |------------|------------|------------|
-| CUSTOM: STD_BOLDS | true/false | "**" **standard Markdown**, "*" *non-standard Markdown* |
-| | | Standard Markdown use - Pumble, Mattermost, Discord, Ntfy, Gotify |
-| | | Non-standard Markdown use - Telegram, Zulip, Flock, Slack, RocketChat, Flock. |
+| CONTENT_NAMES | text/body/content/message | |
 ||||
-| APPRISE: FORMATS | markdown/html/text| markdown - a simple text-based format with lightweight syntax for basic styling, |
+| FORMATS |markdown/html/text/asterisk | markdown - a simple text-based format with lightweight syntax for basic styling (Pumble, Mattermost, Discord, Ntfy, Gotify), |
 ||| html - a web-based format using tags for advanced text styling, |
 ||| text - raw text without any styling or formatting. |
-||||
+||| asterisk - non-standard Markdown (Telegram, Zulip, Flock, Slack, RocketChat, Flock).|
 | DEFAULT_DOT_STYLE | true/false | Round/Square dots. |
 | MIN_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
 
