@@ -151,7 +151,7 @@
             "...."
 		],
         "FORMATS": [
-            "text"
+            "markdown"
         ]
     },
     "CUSTOM": {
@@ -161,11 +161,15 @@
             "second url",
             "...."
 		]
-        "STD_BOLDS" : [
-            true,
-            false,
-            "...."
-                ]
+        "CONTENT_NAMES": [
+            "text",
+            "body",
+	    "...."
+        ],
+        "FORMATS": [
+            "asterisk",
+            "markdown"
+        ]
     },
     "DEFAULT_DOT_STYLE": true,
     "MIN_REPEAT": 1
