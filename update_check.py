@@ -187,7 +187,11 @@ if __name__ == "__main__":
 				globals().update({f"{service.lower()}_{key.lower()}": config_json[service][key] for key in keys})
 				monitoring_mg += f"- messaging: {service.capitalize()},\n"
 		min_repeat = max(int(config_json.get("MIN_REPEAT", 1)), 1)
-		SendMessage(f"{header}upgrade, updates, patches monitor:\n{monitoring_mg}- default dot style: {default_dot_style},\n- polling period: {min_repeat} minute(s).")
+		monitoring_mg += (
+			f"- default dot style: {default_dot_style}.\n"
+			f"- polling period: {min_repeat} minute(s)."
+		)
+		SendMessage(f"{header}hosts monitor:\n{monitoring_mg}")
 	else:
 		print("config.json not found")
 
