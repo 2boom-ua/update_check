@@ -153,7 +153,7 @@
         "FORMAT_MESSAGES": [
             "markdown",
             "html",
-            ...
+            "...."
         ]
     },
     "CUSTOM": {
@@ -164,19 +164,19 @@
             "...."
         ],
         "HEADERS": [
-            {first JSON structure},
-            {second JSON structure},
-            ...
+            {"first JSON structure"},
+            {"second JSON structure"},
+            "..."
         ],
         "PYLOADS": [
-            {first JSON structure},
-            {second JSON structure},
-            ...
+            {"first JSON structure"},
+            {"second JSON structure"},
+            "..."
         ],
         "FORMAT_MESSAGES": [
             "markdown",
             "html",
-            ...
+            "..."
         ]
     },
     "DEFAULT_DOT_STYLE": true,
