@@ -208,7 +208,7 @@ A **config.json** file in the same directory as the script, and include your API
         "FORMAT_MESSAGES": [
             "markdown",
             "html",
-            ...
+            "...."
         ]
     },
     "CUSTOM": {
@@ -219,19 +219,19 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ],
         "HEADERS": [
-            {first JSON structure},
-            {second JSON structure},
-            ...
+            {"first JSON structure"},
+            {"second JSON structure"},
+            "..."
         ],
         "PYLOADS": [
-            {first JSON structure},
-            {second JSON structure},
-            ...
+            {"first JSON structure"},
+            {"second JSON structure"},
+            "..."
         ],
         "FORMAT_MESSAGES": [
             "markdown",
             "html",
-            ...
+            "..."
         ]
     },
     "DEFAULT_DOT_STYLE": true,
