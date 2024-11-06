@@ -166,7 +166,7 @@ if __name__ == "__main__":
 	current_path =  os.path.dirname(os.path.realpath(__file__))
 	dots = {"orange": "\U0001F7E0", "green": "\U0001F7E2"}
 	square_dots = {"orange": "\U0001F7E7", "green": "\U0001F7E9"}
-	monitoring_mg = old_status = ""
+	monitoring_message = old_status = ""
 	if os.path.exists(f"{current_path}/config.json"):
 		with open(f"{current_path}/config.json", "r") as file:
 			config_json = json.loads(file.read())
@@ -174,35 +174,25 @@ if __name__ == "__main__":
 		if not default_dot_style:
 			dots = square_dots
 		orange_dot, green_dot = dots["orange"], dots["green"]
-		messaging_platforms = ["TELEGRAM", "DISCORD", "GOTIFY", "NTFY", "PUSHBULLET", "PUSHOVER", "SLACK", "MATRIX", "MATTERMOST", "PUMBLE", "ROCKET", "ZULIP", "FLOCK", "APPRISE", "CUSTOM"]
-		telegram_on, discord_on, gotify_on, ntfy_on, pushbullet_on, pushover_on, slack_on, matrix_on, mattermost_on, pumble_on, rocket_on, zulip_on, flock_on, apprise_on, custom_on = (config_json[key]["ENABLED"] for key in messaging_platforms)
-		services = {
-			"TELEGRAM": ["TOKENS", "CHAT_IDS"],
-			"DISCORD": ["WEBHOOK_URLS"],
-			"SLACK": ["WEBHOOK_URLS"],
-			"GOTIFY": ["TOKENS", "SERVER_URLS"],
-			"NTFY": ["WEBHOOK_URLS"],
-			"PUSHBULLET": ["TOKENS"],
-			"PUSHOVER": ["TOKENS", "USER_KEYS"],
-			"MATRIX": ["TOKENS", "SERVER_URLS", "ROOM_IDS"],
-			"MATTERMOST": ["WEBHOOK_URLS"],
-			"PUMBLE": ["WEBHOOK_URLS"],
-			"ROCKET": ["WEBHOOK_URLS"],
-			"ZULIP": ["WEBHOOK_URLS"],
-			"FLOCK": ["WEBHOOK_URLS"],
-			"APPRISE": ["WEBHOOK_URLS", "FORMAT_MESSAGES"],
-			"CUSTOM": ["WEBHOOK_URLS", "HEADERS", "PYLOADS", "FORMAT_MESSAGES"]
-		}
-		for service, keys in services.items():
-			if config_json[service]["ENABLED"]:
-				globals().update({f"{service.lower()}_{key.lower()}": config_json[service][key] for key in keys})
-				monitoring_mg += f"- messaging: {service.capitalize()},\n"
+		no_messaging_keys = ["DEFAULT_DOT_STYLE", "MIN_REPEAT"]
+		messaging_platforms = list(set(config_json) - set(no_messaging_keys))
+		for platform in [
+			"telegram_on", "discord_on", "gotify_on", "ntfy_on", "pushbullet_on", 
+			"pushover_on", "slack_on", "matrix_on", "mattermost_on", "pumble_on", 
+			"rocket_on", "zulip_on", "flock_on", "apprise_on", "custom_on"]:
+			globals()[platform] = False
+		globals().update({f"{key.lower()}_on": config_json[key]["ENABLED"] for key in messaging_platforms})
+		for platform in messaging_platforms:
+			if config_json[platform].get("ENABLED", False):
+				for key, value in config_json[platform].items():
+					globals()[f"{platform.lower()}_{key.lower()}"] = value
+				monitoring_message += f"- messaging: {platform.lower().capitalize()},\n"
 		min_repeat = max(int(config_json.get("MIN_REPEAT", 1)), 1)
-		monitoring_mg += (
+		monitoring_message += (
 			f"- default dot style: {default_dot_style}.\n"
 			f"- polling period: {min_repeat} minute(s)."
 		)
-		SendMessage(f"{header}hosts monitor:\n{monitoring_mg}")
+		SendMessage(f"{header}hosts monitor:\n{monitoring_message}")
 	else:
 		print("config.json not found")
 
