@@ -50,8 +50,10 @@ cd dockcheck
 pip install -r requirements.txt
 ```
 
-### Edit config.json:
+## Edit config.json:
 A **config.json** file in the same directory as the script, and include your API tokens and configuration settings.
+
+#### TELEGRAM
 ```
 {
     "TELEGRAM": {
@@ -67,6 +69,16 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Telegram notifications |
+| TOKENS | String | The token of your Telegram bot |
+| CHAT_IDS | String | The ID of the Telegram chat where notifications will be sent |
+
+
+#### DISCORD
+```
     "DISCORD": {
         "ENABLED": false,
         "WEBHOOK_URLS": [
@@ -75,6 +87,15 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Discord notifications |
+| WEBHOOK_URLS | url | The URL of your Discord webhook |
+
+
+#### SLACK
+```
     "SLACK": {
         "ENABLED": false,
         "WEBHOOK_URLS": [
@@ -83,6 +104,15 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Slack notifications |
+| WEBHOOK_URLS | url | The URL of your Slack webhook |
+
+
+#### GOTIFY
+```
     "GOTIFY": {
         "ENABLED": false,
         "TOKENS": [
@@ -96,6 +126,16 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Gotify notifications |
+| SERVER_URLS | url | The URL of your Gotify server |
+| TOKENS | String | The token for your Gotify application |
+
+
+#### NTFY
+```
     "NTFY": {
         "ENABLED": false,
         "WEBHOOK_URLS": [
@@ -104,6 +144,15 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
 		]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Ntfy notifications |
+| WEBHOOK_URLS | url | The URL of your self-hosted Ntfy server (or use https://ntfy.sh) |
+
+
+#### PUSHBULLET
+```
     "PUSHBULLET": {
         "ENABLED": false,
         "TOKENS": [
@@ -112,6 +161,15 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Pushbullet notifications |
+| TOKENS | String | The token for your Pushbullet application |
+
+
+#### PUSHOVER
+```
     "PUSHOVER": {
         "ENABLED": false,
         "TOKENS": [
@@ -125,6 +183,16 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Pushover notifications |
+| TOKENS | String | The token for your Pushover application |
+| USER_KEYS | String | The user key for your Pushover application |
+
+
+#### MATRIX
+```
     "MATRIX": {
         "ENABLED": false,
         "TOKENS": [
@@ -143,6 +211,16 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Matrix notifications |
+| TOKENS | String | The token for your Matrix application |
+| SERVER_URLS | url | The URL of your Matrix server |
+
+
+#### MATTERMOST
+```
     "MATTERMOST": {
         "ENABLED": false,
         "WEBHOOK_URLS": [
@@ -151,6 +229,15 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Mattermost notifications |
+| WEBHOOK_URLS | url | The URL of your Mattermost webhook |
+
+
+#### ROCKET
+```
     "ROCKET": {
         "ENABLED": false,
         "TOKENS": [
@@ -174,6 +261,17 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Rocket.Chat notifications |
+| SERVER_URLS | url | The URL of your Rocket.Chat server |
+| TOKENS | String | The token for your Rocket.Chat application |
+| CHANNEL_IDS | String | The ID of the Rocket.Chat channel where notifications will be sent |
+
+
+#### FLOCK
+```
     "FLOCK": {
         "ENABLED": false,
         "WEBHOOK_URLS": [
@@ -182,6 +280,15 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
 		]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Flock notifications |
+| WEBHOOK_URLS | url | The URL of your Flock webhook |
+
+
+#### PUMBLE
+```
     "PUMBLE": {
         "ENABLED": false,
         "WEBHOOK_URLS": [
@@ -190,6 +297,15 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
 		]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Pumble notifications |
+| WEBHOOK_URLS | url | The URL of your Pumble webhook |
+
+
+#### ZULIP
+```
     "ZULIP": {
         "ENABLED": false,
         "WEBHOOK_URLS": [
@@ -198,6 +314,15 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
 		]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Zulip notifications |
+| WEBHOOK_URLS | url | The URL of your Zulip webhook |
+
+
+#### APPRISE
+```
     "APPRISE": {
         "ENABLED": false,
         "WEBHOOK_URLS": [
@@ -208,9 +333,19 @@ A **config.json** file in the same directory as the script, and include your API
         "FORMAT_MESSAGES": [
             "markdown",
             "html",
-            "...."
+            ...
         ]
     },
+```
+| Item | Required | Description |
+|------------|------------|------------|
+| ENABLED | true/false | Enable or disable Apprise notifications |
+| WEBHOOK_URLS | url | The URL of your Apprise webhook |
+| FORMATS | markdown,<br>html,<br>text,<br>asterisk | The format(s) to be used for the notification (e.g., markdown/html/text/asterisk) |
+
+
+#### CUSTOM
+```
     "CUSTOM": {
         "ENABLED": false,
         "WEBHOOK_URLS": [
@@ -219,90 +354,24 @@ A **config.json** file in the same directory as the script, and include your API
             "...."
         ],
         "HEADERS": [
-            {"first JSON structure"},
-            {"second JSON structure"},
-            "..."
+            {first JSON structure},
+            {second JSON structure},
+            ...
         ],
         "PYLOADS": [
-            {"first JSON structure"},
-            {"second JSON structure"},
-            "..."
+            {first JSON structure},
+            {second JSON structure},
+            ...
         ],
         "FORMAT_MESSAGES": [
             "markdown",
             "html",
-            "..."
+            ...
         ]
     },
-    "DEFAULT_DOT_STYLE": true,
-    "MIN_REPEAT": 1
-}
 ```
 | Item | Required | Description |
 |------------|------------|------------|
-| **TELEGRAM** | | |
-| ENABLED | true/false | Enable or disable Telegram notifications |
-| TOKENS | String | The token of your Telegram bot |
-| CHAT_IDS | String | The ID of the Telegram chat where notifications will be sent |
-||||
-| **DISCORD** | | |
-| ENABLED | true/false | Enable or disable Discord notifications |
-| WEBHOOK_URLS | url | The URL of your Discord webhook |
-||||
-| **SLACK** | | |
-| ENABLED | true/false | Enable or disable Slack notifications |
-| WEBHOOK_URLS | url | The URL of your Slack webhook |
-||||
-| **GOTIFY** | | |
-| ENABLED | true/false | Enable or disable Gotify notifications |
-| SERVER_URLS | url | The URL of your Gotify server |
-| TOKENS | String | The token for your Gotify application |
-||||
-| **NTFY** | | |
-| ENABLED | true/false | Enable or disable Ntfy notifications |
-| WEBHOOK_URLS | url | The URL of your self-hosted Ntfy server (or use https://ntfy.sh) |
-||||
-| **PUSHBULLET** | | |
-| ENABLED | true/false | Enable or disable Pushbullet notifications |
-| TOKENS | String | The token for your Pushbullet application |
-||||
-| **PUSHOVER** | | |
-| ENABLED | true/false | Enable or disable Pushover notifications |
-| TOKENS | String | The token for your Pushover application |
-| USER_KEYS | String | The user key for your Pushover application |
-||||
-| **MATRIX** | | |
-| ENABLED | true/false | Enable or disable Matrix notifications |
-| TOKENS | String | The token for your Matrix application |
-| SERVER_URLS | url | The URL of your Matrix server  (or use https://matrix.org) |
-||||
-| **MATTERMOST** | | |
-| ENABLED | true/false | Enable or disable Mattermost notifications |
-| WEBHOOK_URLS | url | The URL of your Mattermost webhook |
-||||
-| **ROCKET** | | |
-| ENABLED | true/false | Enable or disable Rocket.Chat notifications |
-| SERVER_URLS | url | The URL of your Rocket.Chat server |
-| TOKENS | String | The token for your Rocket.Chat application |
-| CHANNEL_IDS | String | The ID of the Rocket.Chat channel where notifications will be sent |
-||||
-| **PUMBLE** | | |
-| ENABLED | true/false | Enable or disable Pumble notifications |
-| WEBHOOK_URLS | url | The URL of your Pumble webhook |
-||||
-| **ZULIP** | | |
-| ENABLED | true/false | Enable or disable Zulip notifications |
-| WEBHOOK_URLS | url | The URL of your Zulip webhook |
-||||
-| **FLOCK** | | |
-| ENABLED | true/false | Enable or disable Flock notifications |
-| WEBHOOK_URLS | url | The URL of your Flock webhook |
-||||
-| **APPRISE** | | |
-| ENABLED | true/false | Enable or disable Apprise notifications |
-| WEBHOOK_URLS | url | The URL of your Apprise webhook |
-| FORMAT_MESSAGE | markdown,<br>html,<br>text,<br>asterisk | Specifies the message format used by each service, such as markdown, html, or other text formatting.|
-||||
 | **CUSTOM** | | |
 | ENABLED | true/false | Enable or disable Custom notifications |
 | WEBHOOK_URLS | url | The URL of your Custom webhook |
@@ -362,12 +431,16 @@ A **config.json** file in the same directory as the script, and include your API
     }
 ```
 
-
+```
+ "DEFAULT_DOT_STYLE": true,
+    "MIN_REPEAT": 1
+```
 
 | Item   | Required   | Description   |
 |------------|------------|------------|
 | DEFAULT_DOT_STYLE | true/false | Round/Square dots. |
 | MIN_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
+
 
 ## Running as a Linux Service
 You can set this script to run as a Linux service for continuous monitoring.
