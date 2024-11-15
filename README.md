@@ -65,17 +65,17 @@ You can use any name and any number of records for each messaging platform confi
         "HEADER": [
             {first JSON structure},
             {second JSON structure},
-            ...
+            {....}
         ],
         "PYLOAD": [
             {first JSON structure},
             {second JSON structure},
-            ...
+            {....}
         ],
         "FORMAT_MESSAGE": [
             "markdown",
             "html",
-            ...
+            "...."
         ]
     },
 ```
