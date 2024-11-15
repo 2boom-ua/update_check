@@ -104,7 +104,7 @@ You can use any name and any number of records for each messaging platform confi
 | MIN_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
 
 
-## Running as a Linux Service
+### Running as a Linux Service
 You can set this script to run as a Linux service for continuous monitoring.
 
 Create a systemd service file:
@@ -133,10 +133,10 @@ systemctl enable update_check.service
 systemctl start update_check.service
 ```
 
-## License
+### License
 
 This project is licensed under the MIT License - see the [MIT License](https://opensource.org/licenses/MIT) for details.
 
-## Author
+### Author
 
 - **2boom** - [GitHub](https://github.com/2boom-ua)
