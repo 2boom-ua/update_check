@@ -82,12 +82,12 @@ if __name__ == "__main__":
     ]
     hostname = getHostName()
     header = f"*{hostname}* (updates)\n"
-    current_path =  os.path.dirname(os.path.realpath(__file__))
+    config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "config.json")
     dots = {"orange": "\U0001F7E0", "green": "\U0001F7E2"}
     square_dots = {"orange": "\U0001F7E7", "green": "\U0001F7E9"}
     monitoring_message = old_status = ""
-    if os.path.exists(f"{current_path}/config.json"):
-        with open(f"{current_path}/config.json", "r") as file:
+    if os.path.exists(config_file):
+        with open(config_file, "r") as file:
             config_json = json.loads(file.read())
         try:
             default_dot_style = config_json.get("DEFAULT_DOT_STYLE", True)
