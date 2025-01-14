@@ -95,16 +95,50 @@ You can use any name and any number of records for each messaging platform confi
 
 
 ```
+ "HOST_NAME": "MyHostName",
  "DEFAULT_DOT_STYLE": true,
  "MIN_REPEAT": 1
 ```
 
 | Item   | Required   | Description   |
 |------------|------------|------------|
+| HOST_NAME | string | Host or config name.|
 | DEFAULT_DOT_STYLE | true/false | Round/Square dots. |
 | MIN_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
 
+## Docker
+### docker-cli
+```bash
+docker build -t update_check:latest .
+```
+```bash
+docker run -d \
+  --name update_check \
+  -v $(pwd)/config.json:/update_check/config.json \
+  -v /run/dietpi:/run/dietpi
+  --restart always \
+  web_check:latest
+```
+### docker-compose
+```
+version: "3.8"
+services:
+  update_check:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: update_check
+    image: update_check:latest
+    volumes:
+      - ./config.json:/update_check/config.json
+      - /run/dietpi:/run/dietpi
+    restart: always
+```
 
+```bash
+docker-compose up -d
+```
+---
 ### Running as a Linux Service
 You can set this script to run as a Linux service for continuous monitoring.
 
