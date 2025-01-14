@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-#Copyright (c) 2024 2boom.
+#Copyright (c) 2024-25 2boom.
 
 import json
 import os
@@ -80,8 +80,6 @@ if __name__ == "__main__":
         ['/run/dietpi/.update_available', 'upgrade available'],
         ['/run/dietpi/.live_patches', 'live patch(es) available']
     ]
-    hostname = getHostName()
-    header = f"*{hostname}* (updates)\n"
     config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "config.json")
     dots = {"orange": "\U0001F7E0", "green": "\U0001F7E2"}
     square_dots = {"orange": "\U0001F7E7", "green": "\U0001F7E9"}
@@ -90,15 +88,19 @@ if __name__ == "__main__":
         with open(config_file, "r") as file:
             config_json = json.loads(file.read())
         try:
+            hostname = config_json.get("HOST_NAME", "")
             default_dot_style = config_json.get("DEFAULT_DOT_STYLE", True)
             min_repeat = max(int(config_json.get("MIN_REPEAT", 1)), 1)
         except (json.JSONDecodeError, ValueError, TypeError, KeyError):
             default_dot_style = True
             min_repeat = 1
+        if not hostname:
+            hostname = getHostName()
+        header = f"*{hostname}* (updates)\n"
         if not default_dot_style:
             dots = square_dots
         orange_dot, green_dot = dots["orange"], dots["green"]
-        no_messaging_keys = ["DEFAULT_DOT_STYLE", "MIN_REPEAT"]
+        no_messaging_keys = ["HOST_NAME", "DEFAULT_DOT_STYLE", "MIN_REPEAT"]
         messaging_platforms = list(set(config_json) - set(no_messaging_keys))
         for platform in messaging_platforms:
             if config_json[platform].get("ENABLED", False):
