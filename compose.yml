@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  update_check:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: update_check
+    image: update_check:latest
+    volumes:
+      - ./config.json:/update_check/config.json
+      - /run/dietpi:/run/dietpi
+    environment:
+      - TZ=Europe/Kyiv
+    restart: always
+    healthcheck:
+      test: ["CMD", "pgrep", "-fl", "update_check"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
