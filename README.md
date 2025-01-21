@@ -111,26 +111,16 @@ You can use any name and any number of records for each messaging platform confi
 ## Docker
 ### docker-cli
 ```bash
-docker build -t update_check:latest .
-```
-```bash
 docker run -d \
-  --name update_check \
-  -v $(pwd)/config.json:/update_check/config.json \
-  -v /run/dietpi:/run/dietpi
-  --restart always \
-  web_check:latest
+  docker run -v ./config.json:/update_check/config.json -v /run/dietpi:/run/dietpi --name update_check -e TZ=UTC ghcr.io/2boom-ua/update_check:latest 
 ```
 ### docker-compose
 ```
 version: "3.8"
 services:
   update_check:
-    build:
-      context: .
-      dockerfile: Dockerfile
     container_name: update_check
-    image: update_check:latest
+    image: ghcr.io/2boom-ua/update_check:latest
     volumes:
       - ./config.json:/update_check/config.json
       - /run/dietpi:/run/dietpi
