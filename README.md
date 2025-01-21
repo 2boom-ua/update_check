@@ -111,7 +111,6 @@ You can use any name and any number of records for each messaging platform confi
 ## Docker
 ### docker-cli
 ```bash
-docker run -d \
   docker run -v ./config.json:/update_check/config.json -v /run/dietpi:/run/dietpi --name update_check -e TZ=UTC ghcr.io/2boom-ua/update_check:latest 
 ```
 ### docker-compose
