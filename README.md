@@ -109,6 +109,14 @@ You can use any name and any number of records for each messaging platform confi
 | MIN_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
 
 ## Docker
+```bash
+  docker build -t update_check .
+```
+or
+```bash
+  docker pull ghcr.io/2boom-ua/update_check:latest
+```
+
 ### docker-cli
 ```bash
   docker run -v ./config.json:/update_check/config.json -v /run/dietpi:/run/dietpi --name update_check -e TZ=UTC ghcr.io/2boom-ua/update_check:latest 
