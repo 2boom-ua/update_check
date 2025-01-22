@@ -37,20 +37,6 @@ This Python script monitors the availability of system updates, upgrades, and li
 - Docker installed and running
 - Dependencies: `requests`, `schedule`
 
-### Edit crontab (crontab -e)
-```
-0 */1 * * * /boot/dietpi/dietpi-update 2
-```
-### Clone the repository:
-```
-git clone https://github.com/2boom-ua/update_check.git
-cd dockcheck
-```
-### Install required Python packages:
-```
-pip install -r requirements.txt
-```
-
 ### Edit config.json:
 You can use any name and any number of records for each messaging platform configuration, and you can also mix platforms as needed. The number of message platform configurations is unlimited.
 
@@ -108,6 +94,16 @@ You can use any name and any number of records for each messaging platform confi
 | DEFAULT_DOT_STYLE | true/false | Round/Square dots. |
 | MIN_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
 
+### Edit crontab (crontab -e)
+```
+0 */1 * * * /boot/dietpi/dietpi-update 2
+```
+### Clone the repository:
+```
+git clone https://github.com/2boom-ua/update_check.git
+cd dockcheck
+```
+
 ## Docker
 ```bash
   docker build -t update_check .
@@ -143,6 +139,10 @@ docker-compose up -d
 ### Running as a Linux Service
 You can set this script to run as a Linux service for continuous monitoring.
 
+### Install required Python packages:
+```
+pip install -r requirements.txt
+```
 Create a systemd service file:
 ```
 nano /etc/systemd/system/update_check.service
