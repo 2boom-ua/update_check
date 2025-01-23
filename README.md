@@ -82,7 +82,7 @@ You can use any name and any number of records for each messaging platform confi
 
 ```
  "HOST_NAME": "MyHostName",
-"STARTUP_MESSAGE": true,
+ "STARTUP_MESSAGE": true,
  "DEFAULT_DOT_STYLE": true,
  "MIN_REPEAT": 1
 ```
