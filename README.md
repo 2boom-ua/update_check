@@ -112,7 +112,7 @@ or
 ```bash
   docker pull ghcr.io/2boom-ua/update_check:latest
 ```
-## Dowload and edit config.json
+### Dowload and edit config.json
 ```bash
 curl -L -o ./config.json  https://raw.githubusercontent.com/2boom-ua/update_check/main/config.json
 ```
