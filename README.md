@@ -112,7 +112,10 @@ or
 ```bash
   docker pull ghcr.io/2boom-ua/update_check:latest
 ```
-
+## Dowload and edit config.json
+```bash
+curl -L -o ./config.json  https://raw.githubusercontent.com/2boom-ua/update_check/main/config.json
+```
 ### docker-cli
 ```bash
   docker run -v ./config.json:/update_check/config.json -v /run/dietpi:/run/dietpi --name update_check -e TZ=UTC ghcr.io/2boom-ua/update_check:latest 
