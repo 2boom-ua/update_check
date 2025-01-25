@@ -81,7 +81,6 @@ You can use any name and any number of records for each messaging platform confi
 
 
 ```
- "HOST_NAME": "MyHostName",
  "STARTUP_MESSAGE": true,
  "DEFAULT_DOT_STYLE": true,
  "MIN_REPEAT": 1
@@ -89,7 +88,6 @@ You can use any name and any number of records for each messaging platform confi
 
 | Item   | Required   | Description   |
 |------------|------------|------------|
-| HOST_NAME | string | Host or config name.|
 | STARTUP_MESSAGE | true/false | On/Off startup message. |
 | DEFAULT_DOT_STYLE | true/false | Round/Square dots. |
 | MIN_REPEAT | 1 | Set the poll period in minutes. Minimum is 1 minute. | 
