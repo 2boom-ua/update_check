@@ -125,6 +125,7 @@ services:
   update_check:
     container_name: update_check
     image: ghcr.io/2boom-ua/update_check:latest
+    network_mode: host
     volumes:
       - ./config.json:/update_check/config.json
       - /run/dietpi:/run/dietpi
