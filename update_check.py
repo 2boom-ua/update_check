@@ -109,7 +109,6 @@ if __name__ == "__main__":
         with open(config_file, "r") as file:
             config_json = json.loads(file.read())
         try:
-            hostname = config_json.get("HOST_NAME", "")
             startup_message = config_json.get("STARTUP_MESSAGE", True)
             default_dot_style = config_json.get("DEFAULT_DOT_STYLE", True)
             min_repeat = max(int(config_json.get("MIN_REPEAT", 1)), 1)
@@ -117,13 +116,12 @@ if __name__ == "__main__":
             default_dot_style = startup_message = True
             min_repeat = 1
             logger.error("Error or incorrect settings in config.json. Default settings will be used.")
-        if not hostname:
-            hostname = getHostName()
+        hostname = getHostName()
         header = f"*{hostname}* (updates)\n"
         if not default_dot_style:
             dots = square_dots
         orange_dot, green_dot = dots["orange"], dots["green"]
-        no_messaging_keys = ["HOST_NAME", "STARTUP_MESSAGE", "DEFAULT_DOT_STYLE", "MIN_REPEAT"]
+        no_messaging_keys = ["STARTUP_MESSAGE", "DEFAULT_DOT_STYLE", "MIN_REPEAT"]
         messaging_platforms = list(set(config_json) - set(no_messaging_keys))
         for platform in messaging_platforms:
             if config_json[platform].get("ENABLED", False):
