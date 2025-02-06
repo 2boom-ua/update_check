@@ -130,7 +130,7 @@ services:
       - ./config.json:/update_check/config.json
       - /run/dietpi:/run/dietpi
     environment:
-      - TZ=UTC
+      - TZ=Etc/UTC
     restart: always
 ```
 
