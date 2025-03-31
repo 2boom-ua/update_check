@@ -120,7 +120,6 @@ curl -L -o ./config.json  https://raw.githubusercontent.com/2boom-ua/update_chec
 ```
 ### docker-compose
 ```
-version: "3.8"
 services:
   update_check:
     container_name: update_check
