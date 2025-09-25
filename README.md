@@ -130,7 +130,7 @@ services:
       - /run/dietpi:/run/dietpi
     environment:
       - TZ=Etc/UTC
-    restart: always
+    restart: unless-stopped
 ```
 
 ```bash
