@@ -350,3 +350,4 @@
 | ENABLED | true/false | Enable or disable Webntfy notifications |
 | SERVER_URL | url | The URL of your Webntfy server |
 | FORMAT_MESSAGE | markdown | Specifies the message format used by each service, such as markdown, html, or other text formatting.|
+
