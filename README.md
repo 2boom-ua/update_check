@@ -37,6 +37,9 @@ This Python script monitors the availability of system updates, upgrades, and li
 - Docker installed and running
 - Dependencies: `requests`, `schedule`
 
+### Config Notification
+Easily configure your settings with the [Multi-Platform Notification JSON Creator.](https://github.com/2boom-ua/mpn_json)
+
 ### Edit config.json:
 You can use any name and any number of records for each messaging platform configuration, and you can also mix platforms as needed. The number of message platform configurations is unlimited.
 
